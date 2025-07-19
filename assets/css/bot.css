@@ -1,115 +1,100 @@
-/* Base Styles */
-.ai-contact-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid var(--card-border);
-    text-align: center;
+/* ===== BASE STYLES ===== */
+.ai-message {
+    max-width: 85%;
+    margin: 8px 0;
+    border-radius: 18px;
+    padding: 10px 15px;
+    animation: fadeIn 0.3s ease;
 }
 
-.ai-contact-profile {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.486);
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%)
+.ai-message-bot {
+    background: rgba(30, 30, 30, 0.7);
+    align-self: flex-start;
+    margin-left: 10px;
+    border-bottom-left-radius: 5px;
 }
 
-.ai-contact-name {
-    font-weight: bold;
-    margin: 5px 0;
+.ai-message-user {
+    background: #00ff88;
+    color: #000;
+    align-self: flex-end;
+    margin-right: 10px;
+    border-bottom-right-radius: 5px;
 }
 
-.ai-contact-buttons {
+.ai-message-content {
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+/* ===== TYPING INDICATOR ===== */
+.typing-indicator {
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.ai-contact-btn {
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    padding: 10px 0;
     gap: 5px;
 }
 
-.ai-contact-chat {
-    background: var(--success);
-    color: #000;
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: typingAnimation 1.4s infinite ease-in-out;
 }
 
-.ai-contact-copy {
-    background: var(--button-bg);
-    color: var(--text-color);
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
 }
 
-    /* Enhanced Menu Bubble */
-.ai-menu-container {
-    background: var(--card-bg);
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* ===== IMAGE STYLES ===== */
+.bot-image {
+    max-width: 100%;
     border-radius: 12px;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid var(--card-border);
+    margin-top: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: block;
 }
 
-.ai-menu-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.qris-image {
+    max-width: 250px;
+    max-height: 250px;
 }
 
-.ai-menu-items {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+.image-caption {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 5px;
+    text-align: center;
 }
 
-.ai-menu-item {
-    padding: 8px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.05);
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.ai-menu-item:hover {
-    background: var(--button-hover);
-}
-
-/* Menu Container */
+/* ===== MENU SYSTEM ===== */
 .ai-menu-container {
     padding: 15px;
     background: rgba(30, 30, 30, 0.7);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 10px 0;
 }
 
 .ai-menu-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    color: #00ff88;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .ai-menu-title i {
-    color: #00ff88;
+    font-size: 14px;
 }
 
-/* Grid Layout */
 .ai-menu-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -119,63 +104,90 @@
 .ai-menu-item {
     padding: 12px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.329);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    min-height: 80px;
+    text-align: center;
 }
 
 .ai-menu-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-color: rgba(0, 255, 136, 0.3);
+    color: rgb(0, 0, 0);
+    background: rgb(0, 255, 136);
+    border-color: rgb(0, 255, 136);
+    transform: translateY(-2px);
 }
 
 .menu-text {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
+}
+
+/* ===== CONTACT CARD ===== */
+.ai-contact-card {
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+}
+
+.ai-contact-profile {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 10px;
+    border: 2px solid #ffffffbe;
+    filter: grayscale(100%)
+}
+
+.ai-contact-name {
+    font-weight: bold;
+    font-size: 16px;
     margin-bottom: 5px;
-    color: #fff;
 }
 
-.menu-keywords {
-    font-size: 11px;
-    opacity: 0.7;
-    color: #00ff88;
+.ai-contact-bio {
+    opacity: 0.8;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
-/* Responsiveness */
-@media (max-width: 480px) {
-    .ai-menu-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .ai-menu-item {
-        min-height: 70px;
-    }
+.ai-contact-phone {
+    font-family: monospace;
+    margin-bottom: 15px;
+    font-size: 15px;
 }
 
-/* ===== BUBBLE CHAT MOBILE ===== */
-.ai-message {
-    max-width: 85%;
-    margin: 8px 0;
+.ai-contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-.ai-message-user {
-    margin-left: auto;
-    margin-right: 10px;
+.ai-contact-btn {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
-.ai-message-bot {
-    margin-right: auto;
-    margin-left: 10px;
+.ai-contact-chat {
+    background: #25D366;
+    color: rgb(0, 0, 0);
 }
 
-/* Ukuran bubble pada mobile */
+.ai-contact-copy {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 480px) {
     .ai-message {
         max-width: 90%;
@@ -186,56 +198,34 @@
         padding: 10px 12px;
         font-size: 14px;
     }
-}
-
-/* ===== FOTO/GAMBAR MOBILE ===== */
-.bot-image {
-    max-width: 100%;
-    border-radius: 12px;
-    margin-top: 8px;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Responsive image */
-@media (max-width: 480px) {
+    
     .bot-image {
         max-width: 280px;
         max-height: 280px;
-        object-fit: contain;
     }
     
-    .image-caption {
-        font-size: 12px;
-        padding: 6px 0;
+    .qris-image {
+        max-width: 220px;
+        max-height: 220px;
     }
-}
-
-/* ===== TOMBOL MENU MOBILE ===== */
-@media (max-width: 480px) {
+    
+    .ai-menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .ai-menu-item {
         padding: 10px;
         font-size: 13px;
     }
-    
-    .ai-menu-grid {
-        gap: 8px;
-    }
 }
 
-/* Gambar khusus mobile */
-.mobile-image {
-    transition: all 0.3s ease;
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 480px) {
-    .mobile-image {
-        max-width: 100% !important;
-        height: auto !important;
-    }
-    
-    /* Untuk QRIS khusus */
-    .qris-image {
-        max-width: 250px !important;
-    }
+@keyframes typingAnimation {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-3px); }
 }
-    /* Existing image styles remain the same */
