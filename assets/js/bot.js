@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "qris": {
             type: "image",
             url: "assets/images/qris.jpg",
-            caption: "💳 <b>QRIS Payment</b>\nScan untuk pembayaran cepat dan aman",
+            caption: "💳 <b>QRIS</b>\nScan Here",
             class: "qris-image"
         },
         "kontak": {
