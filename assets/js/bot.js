@@ -119,9 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize Chat
     function initChat() {
-        addMessage("Welcome to Nerusen, apa yang bisa saya bantu?\n\natau ketik <b>menu</b> jika ingin melihat daftar menu", 'bot');
+        addMessage("Ketik <b>menu</b> jika ingin melihat daftar menu", 'bot');
         setTimeout(() => {
-            addMessage("Ketik <b>menu</b> jika ingin melihat daftar menu", 'bot');
         }, 800);
     }
 
