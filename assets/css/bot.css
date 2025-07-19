@@ -1,0 +1,90 @@
+/* Base Styles */
+.ai-contact-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid var(--card-border);
+    text-align: center;
+}
+
+.ai-contact-profile {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.486);
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%)
+}
+
+.ai-contact-name {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.ai-contact-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.ai-contact-btn {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ai-contact-chat {
+    background: var(--success);
+    color: #000;
+}
+
+.ai-contact-copy {
+    background: var(--button-bg);
+    color: var(--text-color);
+}
+
+    /* Enhanced Menu Bubble */
+.ai-menu-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid var(--card-border);
+}
+
+.ai-menu-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-menu-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.ai-menu-item {
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.ai-menu-item:hover {
+    background: var(--button-hover);
+}
+
+    /* Existing image styles remain the same */
