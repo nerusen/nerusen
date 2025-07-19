@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhanced Responses Database
     const RESPONSES = {
         // Text Responses
-        "software": "🛠️ <b>Software Design Kami:</b>\n\n• Adobe Photoshop\n• Adobe Illustrator\n• Figma (UI/UX)\n• CorelDRAW\n• Procreate\n• Blender (3D)\n• Canva (Quick Design)",
+        "software": "🛠️ <b>Software Yang Digunakan:</b>\n\n• Adobe Photoshop\n• Figma\n• CorelDRAW\n• IbisPaintX\n• Canva",
         "harga": "💰 <b>Daftar Harga:</b>\n\n• Logo Design: Rp 300.000-800.000\n• Banner: Rp 150.000-300.000\n• Social Media Kit: Rp 500.000\n• Website Basic: Rp 1.500.000\n• Website Premium: Rp 3.500.000+\n\n*Harga bisa nego untuk project besar",
-        "portfolio": "🎨 <b>Portfolio Kami:</b>\n\n• Behance: <a href='https://behance.net/xynelsdesign' target='_blank' style='color:#00ff88;'>behance.net/xynelsdesign</a>\n• Dribbble: <a href='https://dribbble.com/nelsen' target='_blank' style='color:#00ff88;'>dribbble.com/nelsen</a>\n• Instagram: @n31sen.st",
+        "portfolio": "🎨 <b>Portfolio Kami:</b>\n\n• Behance: <a href='https://behance.net/xynelsdesign' target='_blank' style='color:#00ff88;'>behance.net/xynelsdesign</a>\n• Dribbble: <a href='https://dribbble.com/nelsen' target='_blank' style='color:#62FF56;'>dribbble.com/nelsen</a>\n• Instagram: @n31sen.st",
         "testimoni": "🌟 <b>Testimoni Klien:</b>\n\n\"Hasil desain sangat memuaskan!\" - PT. Abadi Jaya\n\"Pelayanan cepat dan profesional\" - CV. Mandiri Sejahtera\n\"Logo yang dibuat sangat unik\" - Toko Online Sinar Baru",
         "proses": "🔄 <b>Proses Kerja:</b>\n\n1. Konsultasi kebutuhan\n2. Pembayaran DP 50%\n3. Pengerjaan draft awal\n4. Revisi (max 3x)\n5. Finalisasi & pelunasan\n6. Pengiriman file final",
         "faq": "❓ <b>FAQ:</b>\n\nQ: Berapa lama pengerjaan?\nA: 3-7 hari tergantung kompleksitas\n\nQ: Format file apa saja yang diberikan?\nA: JPG, PNG, PDF, AI, PSD (sesuai kebutuhan)\n\nQ: Bisa revisi berapa kali?\nA: Maksimal 3x revisi",
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "qris": {
             type: "image",
             url: "assets/images/qris.jpg",
-            caption: "💳 <b>QRIS Payment</b>\nScan untuk pembayaran cepat dan aman",
+            caption: "💳 <b>QRIS Payment</b>\nfor pay or support",
             class: "qris-image"
         },
         
@@ -114,12 +114,12 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         
         // Default Response
-        "default": "🤖 <b>Maaf saya tidak mengerti</b>\n\nKetik <b>menu</b> untuk melihat opsi yang tersedia\nAtau langsung tanyakan tentang:\n• Software design\n• Harga jasa\n• Portfolio karya"
+        "default": "❌ <b>Maaf saya tidak mengerti</b>\n\nKetik <b>menu</b> untuk melihat opsi yang tersedia"
     };
 
     // Initialize Chat
     function initChat() {
-        addMessage("Welcome to Nerusen, apa yang bisa saya bantu?", 'bot');
+        addMessage("Welcome to Nerusen, apa yang bisa saya bantu?\n\natau ketik <b>menu</b> jika ingin melihat daftar menu", 'bot');
         setTimeout(() => {
             addMessage("Ketik <b>menu</b> jika ingin melihat daftar menu", 'bot');
         }, 800);
