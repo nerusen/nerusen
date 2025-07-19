@@ -4,7 +4,7 @@
     border-radius: 12px;
     padding: 15px;
     margin: 10px 0;
-    border: 1px solid var(--card-bg);
+    border: 1px solid var(--card-border);
     text-align: center;
 }
 
@@ -58,7 +58,7 @@
     border-radius: 12px;
     padding: 15px;
     margin: 10px 0;
-    border: 1px solid var(--card-bg);
+    border: 1px solid var(--card-border);
 }
 
 .ai-menu-title {
@@ -87,4 +87,155 @@
     background: var(--button-hover);
 }
 
+/* Menu Container */
+.ai-menu-container {
+    padding: 15px;
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ai-menu-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ai-menu-title i {
+    color: #00ff88;
+}
+
+/* Grid Layout */
+.ai-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.ai-menu-item {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 80px;
+}
+
+.ai-menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 255, 136, 0.3);
+}
+
+.menu-text {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.menu-keywords {
+    font-size: 11px;
+    opacity: 0.7;
+    color: #00ff88;
+}
+
+/* Responsiveness */
+@media (max-width: 480px) {
+    .ai-menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ai-menu-item {
+        min-height: 70px;
+    }
+}
+
+/* ===== BUBBLE CHAT MOBILE ===== */
+.ai-message {
+    max-width: 85%;
+    margin: 8px 0;
+}
+
+.ai-message-user {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.ai-message-bot {
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+/* Ukuran bubble pada mobile */
+@media (max-width: 480px) {
+    .ai-message {
+        max-width: 90%;
+        min-width: 60%;
+    }
+    
+    .ai-message-content {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+/* ===== FOTO/GAMBAR MOBILE ===== */
+.bot-image {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-top: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive image */
+@media (max-width: 480px) {
+    .bot-image {
+        max-width: 280px;
+        max-height: 280px;
+        object-fit: contain;
+    }
+    
+    .image-caption {
+        font-size: 12px;
+        padding: 6px 0;
+    }
+}
+
+/* ===== TOMBOL MENU MOBILE ===== */
+@media (max-width: 480px) {
+    .ai-menu-item {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .ai-menu-grid {
+        gap: 8px;
+    }
+}
+
+/* Gambar khusus mobile */
+.mobile-image {
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+    .mobile-image {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Untuk QRIS khusus */
+    .qris-image {
+        max-width: 250px !important;
+    }
+}
     /* Existing image styles remain the same */
