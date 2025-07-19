@@ -194,6 +194,10 @@
         max-width: 90%;
         min-width: 60%;
     }
+
+    .ai-message-bot {
+        border: 2px solid rgba(255,255,255,0.1);
+    }
     
     .ai-message-content {
         padding: 10px 12px;
