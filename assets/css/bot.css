@@ -12,7 +12,7 @@
     align-self: flex-start;
     margin-left: 10px;
     border-bottom-left-radius: 5px;
-    border: 1px rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .ai-message-user {
