@@ -8,7 +8,7 @@
 }
 
 .ai-message-bot {
-    background: rgba(30, 30, 30, 0.7);
+    background: var(--button-bg);
     align-self: flex-start;
     margin-left: 10px;
     border-bottom-left-radius: 5px;
