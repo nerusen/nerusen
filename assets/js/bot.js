@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
         "proses": "🔄 <b>Proses Kerja:</b>\n\n1. Konsultasi kebutuhan\n2. Pembayaran DP 50%\n3. Pengerjaan draft awal\n4. Revisi (max 3x)\n5. Finalisasi & pelunasan\n6. Pengiriman file final",
         "faq": "❓ <b>FAQ:</b>\n\nQ: Berapa lama pengerjaan?\nA: 3-7 hari tergantung kompleksitas\n\nQ: Format file apa saja yang diberikan?\nA: JPG, PNG, PDF, PSD (sesuai kebutuhan)\n\nQ: Bisa revisi berapa kali?\nA: Maksimal 3x revisi, selebihnya dikenakan biaya",
         "sosmed": "📱 <b>Sosial Media:</b>\n\n• Instagram: @n31sen.st\n• WhatsApp: +6287811007088\n• Behance: behance.net/xynelsdesign\n• Dribbble: dribbble.com/nelsen",
-        "jasa": "💼 <b>Jasa Lainnya:</b>\n\n• Desain Merchandise\n• Desain Kemasan\n• Desain Banner Event\n• Desain Kartu Nama\n• Desain Undangan Digital",
+        "jasa": "💼 <b>Jasa Lainnya:</b>\n\n• Desain Merchandise\n• Desain Kemasan\n• Desain Banner Event\n• Desain Poster\n• Desain Media Sosial",
         "pembayaran": "💳 <b>Metode Pembayaran:</b>\n\n• Transfer Bank (BCA, BRI, Mandiri)\n• QRIS (Scan & Pay)\n• Dana/OVO/GoPay\n• PayPal (untuk klien luar negeri)",
-        "waktu": "⏰ <b>Jam Operasional:</b>\n\nSenin-Jumat: 09.00 - 17.00 WIB\nSabtu: 09.00 - 14.00 WIB\nMinggu & Hari Libur: Tutup",
+        "waktu": "⏰ <b>Jam Operasional:</b>\n\nSenin-Jumat: 09.00 - 20.00 WIB\nSabtu: 09.00 - 18.00 WIB\nMinggu & Hari Libur: Close",
         "promo": "🎉 <b>Promo Spesial:</b>\n\n• Diskon 10% untuk order pertama\n• Paket bundling logo + social media kit\n• Free 1x revisi tambahan untuk order >Rp 1jt\n\nGunakan kode: <b>#NERUSEN10</b>",
         "qris": {
             type: "image",
             url: "assets/images/qris.jpg",
-            caption: "💳 <b>QRIS Payment</b>\nScan untuk pembayaran cepat dan aman",
+            caption: "💳 <b>QRIS</b>\nfor pay or support",
             class: "qris-image"
         },
         "kontak": {
