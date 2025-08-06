@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerusen - Welcome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --card-bg: rgba(0, 0, 0, 0.452);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --button-bg: rgba(255, 255, 255, 0.1);
+            --button-hover: rgba(255, 255, 255, 0.15);
+            --glass-blur: blur(10px);
+            --success: #00ff009c;
+            --danger: #ff0055;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.5s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.411), rgba(33, 33, 56, 0.3)),
+                url('back38.gif') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: scroll;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(33, 33, 56, 0.3)),
+                url('back38.gif') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        @font-face {
+            font-family: 'codedex';
+            src: url('assets/pixelgrid-squareboldm.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'codedexs';
+            src: url('assets/pixelgrid-squarebolds.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* LCD Overlay Effect */
+        .lcd-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.24) 50%, rgba(0, 0, 0, 0.473) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 10001;
+            mix-blend-mode: overlay;
+            animation: lcdOverlayMove 6s linear infinite;
+            background-position: 0 0, 0 0;
+            content: "";
+            display: block;
+        }
+
+        @keyframes lcdOverlayMove {
+            0% {
+                background-position: 0 0, 0 0;
+            }
+            50% {
+                background-position: 0 4px, 3px 0;
+            }
+            100% {
+                background-position: 0 0, 0 0;
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 25px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .menu-toggle {
+            position: absolute;
+            color: white;
+            top: 20px;
+            left: 20px;
+            background: var(--card-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.253);
+        }
+
+        .menu-toggle:hover {
+            background: var(--card-bg);
+            transform: scale(1.15);
+        }
+
+        .menu-dropdown {
+            font-family: 'codedexs', monospace;
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 12px;
+            padding: 10px;
+            width: 250px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.404);
+            border: 1px solid var(--card-border);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .menu-toggle.active + .menu-dropdown {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .menu-dropdown a {
+            display: block;
+            padding: 8px 12px;
+            background: var(--button-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 4px 0;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s ease;
+        }
+
+        .menu-dropdown a:hover {
+            background: var(--button-hover);
+            backdrop-filter: none;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 100px;
+            margin-top: 20px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 0px solid var(--text-color);
+            transition: transform 0.3s ease, backdrop-filter 0.2s ease;
+            border-radius: 12px;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+        }
+
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-family: 'codedex', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: 'codedexs', monospace;
+            font-size: 18px;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .typewriter {
+            display: inline-block;
+            position: relative;
+            min-height: 1.2em;
+        }
+
+        .typewriter::after {
+            content: "|";
+            position: absolute;
+            right: -5px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 1em;
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Bottom Navigation Bar Styles */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 25px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .bottom-nav:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+            border-radius: 50%;
+        }
+
+        .nav-item:hover {
+            background: var(--button-hover);
+            transform: scale(1.1);
+        }
+
+        .nav-item.active {
+            background: var(--button-hover);
+            color: var(--success);
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.315);
+            margin: 0 4px;
+        }
+
+        /* Start Button Styles */
+        .start-button {
+            margin-top: 30px;
+            font-family: 'codedexs', monospace;
+            background: var(--button-bg);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 25px;
+            color: var(--text-color);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            min-width: 120px;
+            position: relative;
+        }
+
+        .start-button:hover:not(.loading) {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+        }
+
+        .start-button.loading {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .start-button .fa-bolt {
+            font-size: 16px;
+            transition: opacity 0.3s ease;
+        }
+
+        .start-button.loading .fa-bolt {
+            opacity: 0;
+        }
+
+        .loading-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--card-border);
+            border-top: 2px solid var(--text-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Responsive adjustments for nav */
+        @media (max-width: 480px) {
+            .bottom-nav {
+                bottom: 15px;
+                padding: 6px 12px;
+            }
+            
+            .nav-item {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LCD Overlay Effect -->
+    <div class="lcd-overlay"></div>
+
+    <div class="container">
+        <!-- Menu Toggle Button -->
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Dropdown Menu -->
+        <div class="menu-dropdown">
+            <a href="home.html"><i class="fas fa-home"></i> Home</a>
+            <a href="pet.html"><i class="fas fa-paw"></i> Pet</a>
+            <a href="https://discord.gg/nerusen"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://github.com/nerusen"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <img src="pic.gif" alt="Profile" class="profile-pic">
+            <div class="title-wrapper">
+                <h1 class="title">Hi, Welcome</h1>
+            </div>
+            <p class="subtitle">
+                <span class="typewriter">Welcome to my digital space</span>
+            </p>
+            
+            <!-- Start Button -->
+            <button id="start-button" class="start-button" onclick="startWelcome()">
+                <i class="fas fa-bolt" id="start-icon"></i>
+                <span id="start-text">Start</span>
+                <div class="loading-spinner" id="loading-spinner" style="display: none;"></div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="login.html" class="nav-item" title="Login">
+            <i class="fas fa-user"></i>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="https://drive.google.com/drive/folders/1--_tvxRn7lTVFvLeLikJVa1tDk2oyWfH" class="nav-item" title="Drive">
+            <i class="fab fa-google-drive"></i>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="https://discord.gg/nerusen" class="nav-item" title="Spotify" target="_blank">
+            <i class="fab fa-spotify"></i>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="https://google.com" class="nav-item" title="Google" target="_blank">
+            <i class="fab fa-google" style="background: conic-gradient(from -45deg, #4285F4, #4285F4 90deg, #EA4335 90deg, #EA4335 180deg, #FBBC05 180deg, #FBBC05 270deg, #34A853 270deg, #34A853 360deg); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="https://pin.it/2VsZawlw9" class="nav-item" title="Pinterest" target="_blank">
+            <i class="fab fa-pinterest"></i>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="qris.jpg" class="nav-item" class="nav-item" title="Qris">
+            <i class="fas fa-qrcode"></i>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="https://github.com/nerusen" class="nav-item" title="GitHub" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuDropdown = document.querySelector('.menu-dropdown');
+            
+            menuToggle.classList.toggle('active');
+            
+            if (menuToggle.classList.contains('active')) {
+                menuDropdown.style.opacity = '1';
+                menuDropdown.style.pointerEvents = 'all';
+                menuDropdown.style.transform = 'translateY(0)';
+            } else {
+                menuDropdown.style.opacity = '0';
+                menuDropdown.style.pointerEvents = 'none';
+                menuDropdown.style.transform = 'translateY(-10px)';
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuDropdown = document.querySelector('.menu-dropdown');
+            
+            if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
+                menuToggle.classList.remove('active');
+                menuDropdown.style.opacity = '0';
+                menuDropdown.style.pointerEvents = 'none';
+                menuDropdown.style.transform = 'translateY(-10px)';
+            }
+        });
+
+        // Typewriter effect
+        const typewriterText = "Welcome to my digital space";
+        const typewriterElement = document.querySelector('.typewriter');
+        let index = 0;
+
+        function typeWriter() {
+            if (index < typewriterText.length) {
+                typewriterElement.textContent = typewriterText.substring(0, index + 1);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // Start typewriter effect after page loads
+        window.addEventListener('load', typeWriter);
+
+        // Start button functionality
+        function startWelcome() {
+            const startButton = document.getElementById('start-button');
+            const startIcon = document.getElementById('start-icon');
+            const startText = document.getElementById('start-text');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            
+            // Disable button and show loading
+            startButton.classList.add('loading');
+            startIcon.style.display = 'none';
+            startText.style.display = 'none';
+            loadingSpinner.style.display = 'block';
+            
+            // Simulate loading and redirect
+            setTimeout(() => {
+                window.location.href = 'welcome.html';
+            }, 1500); // 1.5 seconds loading animation
+        }
+    </script>
+</body>
+</html>

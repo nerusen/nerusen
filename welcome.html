@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome - Nerusen</title>
+    <style>
+        @font-face {
+            font-family: 'codedexs';
+            src: url('assets/pixelgrid-squarebolds.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Root variables similar to home.html for consistency */
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --card-bg: rgba(0, 0, 0, 0.452);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --button-bg: rgba(255, 255, 255, 0.1);
+            --button-hover: rgba(255, 255, 255, 0.15);
+            --glass-blur: blur(10px);
+        }
+
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Container for content */
+        #content {
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #content img {
+            width: 200px;
+            height: 100px;
+            margin-top: 20px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            z-index: 10002;
+            border: 0px solid var(--text-color);
+        }
+
+        /* Paragraph style */
+        #welcome-text {
+            font-family: 'codedexs', monospace;
+            font-size: 1.25rem;
+            white-space: pre-wrap;
+            /* Remove border-right cursor */
+            /* border-right: 1px solid var(--text-color); */
+            display: inline-block;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            line-height: 1.25rem; /* match font size for tight cursor */
+            vertical-align: bottom; /* align cursor with text baseline */
+            /* Remove position relative as no pseudo-element cursor */
+            /* position: relative; */
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 480px) {
+            #welcome-text {
+                font-size: 1rem;
+                line-height: 1.1rem;
+            }
+            
+            #content img {
+                width: 150px;
+                height: 75px;
+            }
+        }
+
+        /* Remove the ::after cursor */
+        /* #welcome-text.typing::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 1px;
+            height: 1.25rem;
+            background-color: var(--text-color);
+            animation: blink 1s step-end infinite;
+        } */
+
+        /* New cursor span style */
+        #welcome-text .cursor {
+            display: inline-block;
+            width: 1px;
+            height: 1.25rem;
+            background-color: var(--text-color);
+            animation: blink 1s step-end infinite;
+            vertical-align: bottom;
+            margin-left: 2px;
+        }
+
+        /* Typing cursor blink */
+        @keyframes blink {
+            0%, 50%, 100% {
+                border-color: var(--text-color);
+            }
+            25%, 75% {
+                border-color: transparent;
+            }
+        }
+
+        #welcome-text.typing {
+            animation: blink 1s step-end infinite;
+        }
+
+        /* Skip button top right */
+        #skip {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            font-size: 1rem;
+            background: var(--card-bg);
+            padding: 6px 12px;
+            border-radius: 12px;
+            backdrop-filter: var(--glass-blur);
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        #skip:hover {
+            background-color: var(--button-hover);
+        }
+
+        /* Next button styled like link-button from home.html */
+        #next-button {
+            margin-top: 30px;
+            font-family: 'codedexs', monospace;
+            background: var(--button-bg);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 25px;
+            color: var(--text-color);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            max-width: 200px;
+            user-select: none;
+        }
+
+        #next-button:hover {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Center welcome.gif independently of paragraph */
+        #welcome-gif {
+            margin-bottom: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* LCD Overlay Effect */
+    .lcd-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            linear-gradient(rgba(18, 16, 16, 0.24) 50%, rgba(0, 0, 0, 0.473) 50%), 
+            linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        background-size: 100% 4px, 3px 100%;
+        pointer-events: none;
+        z-index: 10001;
+        animation: lcdOverlayMove 6s linear infinite;
+        background-position: 0 0, 0 0;
+        content: "";
+        display: block;
+    }
+
+    @keyframes lcdOverlayMove {
+        0% {
+            background-position: 0 0, 0 0;
+        }
+        50% {
+            background-position: 0 4px, 3px 0;
+        }
+        100% {
+            background-position: 0 0, 0 0;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="lcd-overlay"></div>
+    <div id="skip">skip</div>
+    <div id="content" aria-live="polite" aria-atomic="true">
+        <img src="/welcome.gif" alt="Welcome animation" id="welcome-gif" />
+        <p id="welcome-text"></p>
+        <a href="login.html" id="next-button" style="display:none;">Next</a>
+    </div>
+
+    <script>
+        (function() {
+            const text = "Hi, Welcome to Nerusen><\n\nTempat di mana kreativitas bertemu inovasi, dan ide-ide sederhana tumbuh menjadi karya yang bermakna.\n\nDidirikan sejak Maret 2021, Nerusen hadir sebagai identitas kreatif independen yang memadukan estetika modern, ketelitian profesional, dan semangat personal dalam setiap proyek.\n\nNerusen - “Creating Beyond the Lines”.";
+            const typingSpeed = 100; // ms per character, moderate speed
+            const initialDelay = 2000; // 2 seconds black screen delay before typing starts
+            const welcomeTextElem = document.getElementById('welcome-text');
+            const contentElem = document.getElementById('content');
+            const skipElem = document.getElementById('skip');
+            const nextButton = document.getElementById('next-button');
+
+            let charIndex = 0;
+            let typingInterval = null;
+            let typingDone = false;
+
+            // Show content container after initial delay
+            function showContent() {
+                contentElem.style.opacity = '1';
+                welcomeTextElem.classList.add('typing');
+                startTyping();
+            }
+
+            // Typing function
+            function startTyping() {
+                typingInterval = setInterval(() => {
+                if (charIndex < text.length) {
+                    // Remove existing cursor span if any
+                    const existingCursor = welcomeTextElem.querySelector('.cursor');
+                    if (existingCursor) {
+                        existingCursor.remove();
+                    }
+
+                    // Append next character as text node
+                    welcomeTextElem.appendChild(document.createTextNode(text.charAt(charIndex)));
+                    charIndex++;
+
+                    // Append cursor span
+                    const cursorSpan = document.createElement('span');
+                    cursorSpan.className = 'cursor';
+                    welcomeTextElem.appendChild(cursorSpan);
+                } else {
+                    finishTyping();
+                }
+                }, typingSpeed);
+            }
+
+                // Finish typing animation
+                function finishTyping() {
+                    clearInterval(typingInterval);
+                    typingDone = true;
+                    welcomeTextElem.classList.remove('typing');
+                    // Remove cursor span on finish
+                    const existingCursor = welcomeTextElem.querySelector('.cursor');
+                    if (existingCursor) {
+                        existingCursor.remove();
+                    }
+                    showNextButton();
+                    skipElem.style.display = 'none';
+                }
+
+            // Show Next button
+            function showNextButton() {
+                nextButton.style.display = 'inline-block';
+            }
+
+                // Skip typing animation handler
+                skipElem.addEventListener('click', () => {
+                    if (!typingDone) {
+                        clearInterval(typingInterval);
+                        // Remove existing cursor span if any
+                        const existingCursor = welcomeTextElem.querySelector('.cursor');
+                        if (existingCursor) {
+                            existingCursor.remove();
+                        }
+
+                        // Set full text as text node
+                        welcomeTextElem.textContent = text;
+                        finishTyping();
+                    }
+                });
+
+            // Initially hide content, show black screen only
+            contentElem.style.opacity = '0';
+            welcomeTextElem.textContent = '';
+
+            // Start after initial delay
+            setTimeout(showContent, initialDelay);
+        })();
+    </script>
+</body>
+</html>

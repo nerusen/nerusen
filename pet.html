@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nerusen - Main Page</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet" />
+    <style>
+        /* Root variables for colors and effects */
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --card-bg: rgba(0, 0, 0, 0.452);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --button-bg: rgba(255, 255, 255, 0.1);
+            --button-hover: rgba(255, 255, 255, 0.15);
+            --glass-blur: blur(10px);
+            --spotify-bg: #282828;
+            --verified-blue: #1DA1F2;
+            --menu: #ffffff;
+            --success: rgb(21, 255, 0);
+            --start: #00ff1571;
+            --danger: #7a0000a8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.5s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.411), rgba(33, 33, 56, 0.3)),
+                url('back38.gif') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: scroll;
+        }
+
+        body::before {
+            position: fixed; /* Kunci background */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(33, 33, 56, 0.3)),
+                url('back38.gif') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        @font-face {
+            font-family: 'codedex';
+            src: url('assets/pixelgrid-squareboldm.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'codedexs';
+            src: url('assets/pixelgrid-squarebolds.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* LCD Overlay Effect */
+        .lcd-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0.24) 50%, rgba(0, 0, 0, 0.473) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 10001;
+            mix-blend-mode: overlay;
+            animation: lcdOverlayMove 6s linear infinite;
+            background-position: 0 0, 0 0;
+        }
+
+        @keyframes lcdOverlayMove {
+            0% {
+                background-position: 0 0, 0 0;
+            }
+            50% {
+                background-position: 0 4px, 3px 0;
+            }
+            100% {
+                background-position: 0 0, 0 0;
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 25px;
+            box-sizing: border-box;
+        }
+
+        .menu-toggle {
+            position: absolute;
+            color: white;
+            top: 20px;
+            left: 20px;
+            background: var(--card-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.253);
+        }
+
+        .menu-toggle:hover {
+            background: var(--card-bg);
+            transform: scale(1.15) !important;
+        }
+
+        .menu-dropdown {
+            font-family: 'codedexs', monospace;
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 12px;
+            padding: 10px;
+            width: 250px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.404);
+            border: 1px solid var(--card-border);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .menu-toggle.active + .menu-dropdown {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .menu-dropdown a {
+            display: block;
+            padding: 8px 12px;
+            background: var(--button-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 4px 0;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s ease;
+        }
+
+        .menu-dropdown a:hover {
+            background: var(--button-hover);
+            backdrop-filter: none;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 100px;
+            margin-top: 20px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 0px solid var(--text-color);
+            transition: transform 0.3s ease, backdrop-filter 0.2s ease;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+        }
+
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 0px;
+        }
+
+        .title {
+            font-family: 'codedex', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-family: 'codedexs', monospace;
+            height: 24px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .typewriter {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typewriter::after {
+            content: "|";
+            position: absolute;
+            right: -5px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 1em;
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .link-button,
+        .link-support,
+        .link-info {
+            font-family: 'codedexs', monospace;
+            background: var(--danger);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .link-support {
+            background: var(--button-bg);
+        }
+
+        .link-info {
+            background: var(--card-bg);
+        }
+
+        .link-button:hover,
+        .link-support:hover,
+        .link-info:hover {
+            background: var(--danger);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            transform: scale(1.05);
+        }
+
+        .link-info:hover {
+            background: var(--card-bg);
+        }
+
+        .link-support:hover {
+            background: var(--button-bg);
+        }
+
+        /* Loading dots wave animation */
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+            justify-content: center;
+            height: 24px; /* match button text height */
+            min-width: 60px; /* approximate width of original content */
+        }
+
+        .loading-dots span {
+            width: 6px;
+            height: 6px;
+            background-color: rgb(255, 0, 0);
+            border-radius: 50%;
+            animation: wave 1.2s infinite ease-in-out;
+        }
+
+        .loading-dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes wave {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .link-button::before,
+        .link-support::before,
+        .link-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.425),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .link-button:hover::before,
+        .link-support:hover::before,
+        .link-info:hover::before {
+            left: 100%;
+        }
+
+        .link-button span {
+            color: rgb(255, 0, 0);
+        }
+
+        .link-button i,
+        .link-support i,
+        .link-info i {
+            margin-right: 10px;
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .link-button:hover i,
+        .link-support:hover i,
+        .link-info:hover i {
+            transform: scale(1.1);
+        }
+
+        /* CORE CONTAINER */
+        .pet-container {
+            position: relative;
+            background: 
+                radial-gradient(circle at center, 
+                rgba(20, 10, 30, 0.8) 0%, 
+                rgba(10, 5, 20, 0.9) 100%);
+            backdrop-filter: blur(16px);
+            border-radius: 18px;
+            padding: 20px;
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid rgba(255, 255, 255, 0.226);
+            overflow: hidden;
+            box-shadow:
+                0 0 40px rgba(106, 209, 255, 0.15),
+                0 0 60px rgba(255, 154, 239, 0.1);
+            z-index: 1;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            }
+
+        /* HOLOGRAPHIC BASE GLOW */
+        .holo-base-glow {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, 
+                rgba(106, 209, 255, 0.3) 0%, 
+                transparent 40%),
+                radial-gradient(circle at 70% 70%, 
+                rgba(255, 154, 239, 0.3) 0%, 
+                transparent 40%);
+            animation: holoPulse 12s infinite alternate;
+            mix-blend-mode: overlay;
+            z-index: 1;
+        }
+
+        /* ===== HOLO LIGHT SHEET ===== */
+        .holo-light-sheet {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150%; /* Extended width for seamless transition */
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.15) 15%,
+                rgba(106, 209, 255, 0.25) 35%,
+                rgba(255, 154, 239, 0.25) 50%,
+                rgba(106, 209, 255, 0.25) 65%,
+                rgba(255, 255, 255, 0.15) 85%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: translateX(-100%) skewX(-25deg);
+            animation: holoLightSweep 4s infinite linear;
+            opacity: 0;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Continuous sweep animation */
+        @keyframes holoLightSweep {
+            0% {
+                transform: translateX(-100%) skewX(-25deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(100%) skewX(-25deg);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced hover effect - continuous loop */
+        .pet-container:hover .holo-light-sheet {
+            animation: 
+                holoLightSweep 3s infinite linear,
+                holoLightFlicker 2s infinite;
+            opacity: 0.8;
+        }
+
+        /* Smoother flicker effect */
+        @keyframes holoLightFlicker {
+            0%, 100% { opacity: 0.8; }
+            25% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+            75% { opacity: 0.7; }
+        }
+
+        /* Additional continuous glow effect */
+        .pet-container:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at center,
+                rgba(106, 209, 255, 0.1) 0%,
+                rgba(255, 154, 239, 0.05) 50%,
+                transparent 100%
+            );
+            animation: holoLightPulse 3s infinite alternate;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes holoLightPulse {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0.7;
+            }
+        }
+
+        /* PARTICLE FIELD */
+        .holo-particle-field {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+                radial-gradient(circle, rgba(106,209,255,0.6) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,154,239,0.6) 1px, transparent 1px);
+            background-size: 
+                100px 100px,
+                150px 150px,
+                200px 200px;
+            animation: holoParticles 20s linear infinite;
+            z-index: 3;
+            opacity: 0.4;
+            mix-blend-mode: screen;
+        }
+
+        /* SCANLINES EFFECT */
+        .holo-scanlines {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(255,255,255,0.03) 0.5%,
+                transparent 1%
+                ),
+                repeating-linear-gradient(
+                to right,
+                rgba(106,209,255,0.02) 0%,
+                rgba(255,154,239,0.02) 0.5%,
+                transparent 1%
+                );
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* IMAGE HOLO OVERLAY */
+        .holo-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(
+                135deg,
+                rgba(106, 209, 255, 0.1) 0%,
+                rgba(255, 154, 239, 0.1) 50%,
+                rgba(106, 209, 255, 0.1) 100%
+                );
+            animation: holoImageShift 15s linear infinite;
+            mix-blend-mode: overlay;
+            z-index: 2;
+        }
+
+        /* ANIMATIONS */
+        @keyframes holoPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.9; }
+        }
+
+        @keyframes holoSweep {
+            0% { transform: translateX(-100%) rotate(25deg); }
+            100% { transform: translateX(100%) rotate(25deg); }
+        }
+
+        @keyframes holoFlicker {
+            0%, 19%, 23%, 80%, 83%, 100% { opacity: 0.8; }
+            20%, 22%, 81% { opacity: 0.2; }
+        }
+
+        @keyframes holoParticles {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 1000px 500px, 800px 300px, 600px 400px; }
+        }
+
+        @keyframes holoImageShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* HOVER EFFECTS */
+        .pet-container:hover {
+            border: 1px solid rgba(255, 255, 255, 0.486);
+            background: rgba(146, 113, 199, 0.432);
+            box-shadow:
+                0 0 60px rgba(106, 209, 255, 0.3),
+                0 0 90px rgba(255, 154, 239, 0.2);
+        }
+
+        .pet-container:hover .holo-particle-field {
+            animation: holoParticles 10s linear infinite;
+            opacity: 0.6;
+        }
+        /* Pet Header - Date and Level */
+        .pet-header {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .pet-date, .pet-level {
+            font-family: 'codedexs', monospace;
+            background: rgba(242, 219, 255, 0.418);
+            padding: 5px 12px;
+            color: white !important;
+            border-radius: 20px;
+            font-size: 12px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Efek Holographic untuk Pet Image */
+        .pet-image-container {
+            background:rgba(255, 255, 255, 0.178);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 5px 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .pet-image {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin: 20px;
+            position: relative;
+            z-index: 1;
+            /* Efek dasar untuk gambar */
+            filter: invert(100%) sepia(100%) hue-rotate(220deg) brightness(1.3) contrast(1.1) saturate(1.5) drop-shadow(0 0 20px rgb(158, 55, 253));
+            transition: all 0.5s ease;
+        }
+
+        /* Overlay holographic */
+        .pet-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.281) 0%,
+                rgba(255, 154, 239, 0.3) 25%,
+                rgba(168, 127, 255, 0.3) 50%,
+                rgba(106, 209, 255, 0.3) 75%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            background-size: 200% 200%;
+            mix-blend-mode: overlay;
+            z-index: 2;
+            animation: holoGradient 8s linear infinite;
+        }
+
+        /* Cahaya bergerak */
+        .pet-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(255, 255, 255, 0.5) 50%,
+                transparent 55%
+            );
+            transform: rotate(45deg);
+            z-index: 3;
+            animation: holoLight 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        /* Efek kilauan */
+        @keyframes holoSparkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+
+        .pet-image:hover {
+            transform: scale(1.05);
+            filter: invert(100%) sepia(100%) hue-rotate(200deg) brightness(1.5) contrast(1.3) saturate(1.5);
+        }
+
+        .pet-image:hover::after {
+            animation: holoGradient 4s linear infinite, holoSparkle 2s ease-in-out infinite;
+        }
+
+        /* Animasi gradient holographic */
+        @keyframes holoGradient {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        /* Animasi cahaya bergerak */
+        @keyframes holoLight {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        /* Efek kilauan titik-titik */
+        .pet-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 154, 250, 0.8) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(106, 209, 255, 0.8) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.9) 0%, transparent 20%);
+            background-size: 200% 200%;
+            z-index: 4;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            animation: holoSparklePoints 10s linear infinite;
+        }
+
+        @keyframes holoSparklePoints {
+            0%, 100% {
+                background-position: 20% 30%, 80% 70%, 50% 50%;
+                opacity: 0.8;
+            }
+            25% {
+                background-position: 30% 40%, 70% 60%, 40% 60%;
+                opacity: 0.6;
+            }
+            50% {
+                background-position: 25% 35%, 75% 65%, 55% 55%;
+                opacity: 0.4;
+            }
+            75% {
+                background-position: 35% 45%, 65% 55%, 45% 65%;
+                opacity: 0.6;
+            }
+        }
+
+        /* Pet Name */
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('assets/Minecraft.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'codedex';
+            src: url('assets/pixelgrid-squareboldm.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'codedexs';
+            src: url('assets/pixelgrid-squarebolds.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'codedexl';
+            src: url('assets/pixelgrid-squareboldxl.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'EvogriaItalic';
+            src: url('assets/Evogria Italic.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Dotemp';
+            src: url('assets/Dotemp-8bit.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .pet-name {
+            font-family: 'Minecraft', 'Silkscreen', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 30px auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .pet-name-text {
+            font-family: 'codedex', monospace;
+            color: white; /* Warna putih untuk Neru */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+        }
+
+        .pet-name-legendary {
+            font-family: 'EvogriaItalic', monospace;
+            background: linear-gradient(
+                270deg,
+                #ffffff,
+                #ff9aef,
+                #a87fff,
+                #6ad1ff,
+                #ffffff,
+                #ff9aef,
+                #a87fff,
+                #6ad1ff,
+                #ffffff
+            );
+            background-size: 200% 200%;
+            
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            
+            text-shadow:
+                0 0 8px #ffffff,
+                0 0 15px #ff9aef,
+                0 0 25px #a87fff,
+                0 0 35px #6ad1ff,
+                0 0 45px #ffffff,
+                0 0 60px #ff9aef,
+                0 0 80px #a87fff;
+            
+            animation: holoShimmer 6s linear infinite, holoPulse 4s ease-in-out infinite alternate;
+            margin-left: 5px;
+            overflow: hidden;
+        }
+
+        /* Remove Light passing effect pseudo-element */
+        .pet-name-legendary::before {
+            content: '';
+            display: none;
+        }
+
+        @keyframes holoShimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes holoPulse {
+            0% {
+                text-shadow:
+                    0 0 8px #ffffff,
+                    0 0 15px #a8f0ff,
+                    0 0 25px #d4faff,
+                    0 0 35px #ffffff,
+                    0 0 45px #a8f0ff,
+                    0 0 60px #d4faff,
+                    0 0 80px #ffffff;
+            }
+            100% {
+                text-shadow:
+                    0 0 12px #ffffff,
+                    0 0 20px #a8f0ff,
+                    0 0 30px #d4faff,
+                    0 0 40px #ffffff,
+                    0 0 50px #a8f0ff,
+                    0 0 70px #d4faff,
+                    0 0 90px #ffffff;
+            }
+        }
+
+        @keyframes lightPass {
+            0% {
+                left: -75%;
+            }
+            100% {
+                left: 125%;
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                background-position: 20% 30%, 80% 70%, 50% 50%;
+                opacity: 0.8;
+            }
+            50% {
+                background-position: 25% 35%, 75% 65%, 55% 55%;
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Centered Strike Element */
+        .pet-strike-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        /* ===== Holographic Light Strike Container ===== */
+        .pet-strike {
+            display: flex;
+            justify-content: center;
+            margin: 10px auto;
+            width: auto;
+            min-width: 100px;
+            max-width: 60%;
+            align-items: center;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(255, 255, 255, 0.1) 0%, 
+                    rgba(106, 209, 255, 0.2) 25%, 
+                    rgba(255, 154, 239, 0.2) 50%, 
+                    rgba(106, 209, 255, 0.2) 75%, 
+                    rgba(255, 255, 255, 0.1) 100%
+                ),
+                radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 70%),
+                radial-gradient(circle at 30% 70%, rgba(106, 209, 255, 0.3) 0%, transparent 70%);
+            background-size: 200% 200%, 100% 100%, 100% 100%;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 16px;
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: 
+                holoStrikeGradient 8s linear infinite,
+                holoStrikeGlow 4s ease infinite;
+            box-shadow: 
+                0 0 10px rgba(106, 209, 255, 0.3),
+                0 0 20px rgba(255, 154, 239, 0.2);
+        }
+
+        /* ===== Animasi Gradient Bergerak ===== */
+        @keyframes holoStrikeGradient {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* ===== Animasi Kilauan Cahaya ===== */
+        @keyframes holoStrikeGlow {
+            0%, 100% { box-shadow: 
+                0 0 10px rgba(106, 209, 255, 0.3),
+                0 0 20px rgba(255, 154, 239, 0.2); }
+            50% { box-shadow: 
+                0 0 15px rgba(106, 209, 255, 0.5),
+                0 0 30px rgba(255, 154, 239, 0.4); }
+        }
+
+        /* ===== Efek Cahaya Bergerak (Overlay) ===== */
+        .pet-strike::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(255, 255, 255, 0.4) 50%,
+                transparent 55%
+            );
+            transform: rotate(45deg);
+            animation: holoStrikeLight 6s linear infinite;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes holoStrikeLight {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        /* ===== Efek Hover (Lebih Glow!) ===== */
+        .pet-strike:hover {
+            animation: 
+                holoStrikeGradient 4s linear infinite,
+                holoStrikeGlow 2s ease infinite;
+            box-shadow: 
+                0 0 15px rgba(106, 209, 255, 0.5),
+                0 0 30px rgba(255, 154, 239, 0.4),
+                0 0 45px rgba(255, 255, 255, 0.2);
+        }
+
+        .pet-strike:hover::before {
+            animation: holoStrikeLight 3s linear infinite;
+            opacity: 0.8;
+        }
+
+        /* Efek Holographic untuk Strike GIF */
+        .strike-gif {
+            width: 18px;
+            height: 18px;
+            margin-top: -2px;
+            margin-right: 8px;
+            position: relative;
+            z-index: 2;
+            filter:
+                sepia(90%)
+                hue-rotate(240deg)
+                brightness(1.1) 
+                contrast(1.1) 
+                drop-shadow(0 0 5px rgba(106, 209, 255, 0.7))
+                drop-shadow(0 0 10px rgba(255, 103, 230, 0.5))
+                drop-shadow(0 0 15px rgba(176, 106, 255, 0.3));
+            animation: 
+                holoPulse 2s ease infinite,
+                holoColorShift 5s linear infinite,
+                holoFloat 3s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        /* Glow Effect */
+        .strike-gif::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: 
+                radial-gradient(circle, rgba(106, 209, 255, 0.8) 0%, transparent 70%),
+                radial-gradient(circle, rgba(255, 154, 239, 0.6) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: 
+                holoGlowPulse 3s ease infinite,
+                holoGlowRotate 10s linear infinite;
+            opacity: 0.8;
+        }
+
+        /* Light Trails */
+        .strike-gif::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: 
+                linear-gradient(45deg, 
+                    transparent 45%, 
+                    rgba(106, 209, 255, 0.5) 50%, 
+                    transparent 55%),
+                linear-gradient(-45deg, 
+                    transparent 45%, 
+                    rgba(255, 154, 239, 0.5) 50%, 
+                    transparent 55%);
+            background-size: 200% 200%;
+            z-index: -2;
+            animation: 
+                holoTrailMove 4s linear infinite,
+                holoTrailShift 8s linear infinite;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes holoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes holoColorShift {
+            0% { filter:
+                sepia(90%)
+                hue-rotate(240deg)
+                brightness(1.1) 
+                contrast(1.1) 
+                drop-shadow(0 0 5px rgba(106, 209, 255, 0.7))
+                drop-shadow(0 0 10px rgba(255, 154, 239, 0.5))
+                drop-shadow(0 0 15px rgba(106, 209, 255, 0.3)); }
+            33% { filter: 
+                sepia(90%)
+                hue-rotate(250deg)
+                brightness(1.3) 
+                contrast(1.3) 
+                drop-shadow(0 0 5px rgba(255, 154, 239, 0.7))
+                drop-shadow(0 0 10px rgba(106, 209, 255, 0.5))
+                drop-shadow(0 0 15px rgba(255, 154, 239, 0.3)); }
+            66% { filter: 
+                sepia(90%)
+                hue-rotate(245deg)
+                brightness(1.2) 
+                contrast(1.2)
+                drop-shadow(0 0 5px rgba(106, 255, 209, 0.7))
+                drop-shadow(0 0 10px rgba(239, 154, 255, 0.5))
+                drop-shadow(0 0 15px rgba(116, 255, 211, 0.3)); }
+        }
+
+        @keyframes holoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes holoGlowPulse {
+            0%, 100% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.3); opacity: 0.9; }
+        }
+
+        @keyframes holoGlowRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes holoTrailMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        @keyframes holoTrailShift {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        /* Hover Effects */
+        .strike-gif:hover {
+            animation: 
+                holoPulse 0.8s ease infinite,
+                holoColorShift 3s linear infinite,
+                holoFloat 2s ease-in-out infinite;
+        }
+
+        .strike-gif:hover::before {
+            animation: 
+                holoGlowPulse 1.5s ease infinite,
+                holoGlowRotate 5s linear infinite;
+            opacity: 1;
+        }
+
+        .strike-gif:hover::after {
+            animation: 
+                holoTrailMove 2s linear infinite,
+                holoTrailShift 4s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes colorChange {
+            0% { filter: invert(100%) sepia(50%) saturate(300%) hue-rotate(0deg) brightness(1.0) contrast(1.0); }
+            100% { filter: invert(100%) sepia(100%) saturate(300%) hue-rotate(10deg) brightness(1.0) contrast(1.5); }
+        }
+
+        /* ===== Efek pada Teks Strike Days ===== */
+        .pet-strike-text {
+            font-family: 'codedexs', monospace;
+            font-weight: bold;
+            font-size: 10px;
+            letter-spacing: 0.6px;
+            line-height: 1.1;
+            color: white;
+            text-shadow: 
+                0 0 5px rgba(106, 209, 255, 0.7),
+                0 0 10px rgba(255, 154, 239, 0.5);
+            position: relative;
+            z-index: 1;
+            white-space: nowrap;
+        }
+
+        /* Animasi teks strike */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.07); }
+            100% { transform: scale(1); }
+        }
+
+        .pet-strike:hover .pet-strike-text {
+            animation: pulse 0.5s ease;
+        }
+
+        /* Container untuk kedua tombol */
+        .pet-buttons-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        /* Style dasar untuk kedua tombol */
+        .pet-github, 
+        .pet-github-code {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-family: 'codedex', monospace;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1;
+            height: 44px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(246, 217, 255, 0.568); /* Border putih */
+            color: white;
+            transition: all 0.4s ease;
+            z-index: 1;
+            background: transparent;
+        }
+
+        /* Gradient Holographic Bergerak */
+        .pet-github::before,
+        .pet-github-code::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                270deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 154, 239, 0.2) 20%,
+                rgba(168, 127, 255, 0.2) 40%,
+                rgba(106, 209, 255, 0.2) 60%,
+                rgba(255, 255, 255, 0.1) 80%,
+                rgba(255, 154, 239, 0.2) 100%
+            );
+            background-size: 200% 200%;
+            z-index: -1;
+            animation: holoGradient 6s linear infinite;
+        }
+
+        /* Efek Cahaya Bergerak */
+        .pet-github::after,
+        .pet-github-code::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(255, 255, 255, 0.4) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            animation: holoLightMove 5s linear infinite;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Style untuk ikon */
+        .pet-github i {
+            font-size: 16px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .pet-github-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Efek Hover */
+        .pet-github:hover,
+        .pet-github-code:hover {
+            transform: translateY(-3px);
+        }
+
+        .pet-github:hover i,
+        .pet-github-code:hover .pet-github-icon {
+            transform: scale(1.1) rotate(-10deg);
+        }
+
+        /* Animasi */
+        @keyframes holoGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        @keyframes holoLightMove {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .pet-buttons-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .pet-github,
+            .pet-github-code {
+                width: 100%;
+            }
+            
+            .pet-container {
+                max-width: 380px;
+                padding: 18px;
+            }
+            
+            .pet-strike {
+                max-width: 65%;
+                min-width: 120px;
+                padding: 6px 14px;
+                margin: 8px auto;
+            }
+            
+            .strike-gif {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+            
+            .pet-strike-text {
+                font-size: 11px;
+                letter-spacing: 0.7px;
+            }
+        }
+
+        .sparkle-image {
+            position: absolute; /* Posisi absolut agar menumpuk */
+            top: 0;
+            left: 0;
+            width: 100%; /* Sesuaikan ukuran dengan pet.gif */
+            height: 100%;
+            object-fit: contain; /* Pertahankan aspek rasio */
+            z-index: 3; /* Pastikan di atas pet.gif (z-index pet.gif adalah 1) */
+            pointer-events: none; /* Agar tidak mengganggu interaksi */
+            mix-blend-mode: screen; /* Efek blending (opsional) */
+            filter: hue-rotate(190deg) contrast(1.2) brightness(1.3);
+        }
+
+        .sparkle-image-flash {
+            position: absolute; /* Posisi absolut agar menumpuk */
+            top: 0;
+            left: 0;
+            width: 100%; /* Sesuaikan ukuran dengan pet.gif */
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            z-index: 3; /* Pastikan di atas pet.gif (z-index pet.gif adalah 1) */
+            pointer-events: none; /* Agar tidak mengganggu interaksi */
+            mix-blend-mode: screen; /* Efek blending (opsional) */
+            filter: sepia(1) contrast(1.2) saturate(1000%) hue-rotate(240deg);
+        }
+
+        .sparkle-image-flash-glow {
+            position: absolute; /* Posisi absolut agar menumpuk */
+            top: 0;
+            left: 0;
+            width: 100%; /* Sesuaikan ukuran dengan pet.gif */
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            z-index: 3; /* Pastikan di atas pet.gif (z-index pet.gif adalah 1) */
+            pointer-events: none; /* Agar tidak mengganggu interaksi */
+            mix-blend-mode: screen; /* Efek blending (opsional) */
+            filter: sepia(1) contrast(1.2) saturate(1000%) hue-rotate(240deg) blur(20px);
+        }
+
+        .sparkle-image-new {
+            position: absolute; /* Posisi absolut agar menumpuk */
+            top: 0;
+            left: 0;
+            width: 100%; /* Sesuaikan ukuran dengan pet.gif */
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            z-index: 3; /* Pastikan di atas pet.gif (z-index pet.gif adalah 1) */
+            pointer-events: none; /* Agar tidak mengganggu interaksi */
+            mix-blend-mode: screen; /* Efek blending (opsional) */
+            filter: invert(100%) sepia(1) contrast(1.2) saturate(1000%) hue-rotate(240deg);
+        }
+
+        .sparkle-image-glow {
+            position: absolute; /* Posisi absolut agar menumpuk */
+            top: 0;
+            left: 0;
+            width: 100%; /* Sesuaikan ukuran dengan pet.gif */
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            z-index: 3; /* Pastikan di atas pet.gif (z-index pet.gif adalah 1) */
+            pointer-events: none; /* Agar tidak mengganggu interaksi */
+            mix-blend-mode: screen; /* Efek blending (opsional) */
+            filter: invert(100%) sepia(1) contrast(1.2) saturate(1000%) hue-rotate(240deg) blur(10px);
+        }
+
+        .footer {
+            font-family: 'codedexs', monospace;
+            font-size: 12px;
+            opacity: 0.7;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+
+        /* Media query untuk perangkat kecil */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .profile-pic {
+                width: 200px;
+                height:100px;
+            }
+            
+            .title {
+                font-size: 16px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .link-button {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        
+            .link-button i {
+                font-size: 16px;
+                margin-right: 8px;
+            }
+            
+            /* Strike container mobile optimizations */
+            .pet-container {
+                max-width: 100%;
+                padding: 16px;
+            }
+            
+            .pet-strike {
+                max-width: 70%;
+                min-width: 140px;
+                padding: 8px 16px;
+                margin: 8px auto;
+                border-radius: 14px;
+            }
+            
+            .strike-gif {
+                width: 22px;
+                height: 22px;
+                margin-right: 12px;
+                margin-top: -2px;
+            }
+            
+            .pet-strike-text {
+                font-size: 12px;
+                letter-spacing: 0.8px;
+                line-height: 1.2;
+            }
+        }
+
+        /* Media query untuk perangkat sangat kecil */
+        @media (max-width: 360px) {
+            .pet-strike {
+                max-width: 75%;
+                min-width: 120px;
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+            
+            .strike-gif {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+            
+            .pet-strike-text {
+                font-size: 11px;
+                letter-spacing: 0.6px;
+            }
+        }
+
+        /* Media query untuk perangkat besar */
+        @media (min-width: 769px) {
+            .pet-strike {
+                max-width: 55%;
+                min-width: 140px;
+                padding: 8px 16px;
+            }
+            
+            .strike-gif {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+            
+            .pet-strike-text {
+                font-size: 11px;
+                letter-spacing: 0.8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LCD Overlay Effect -->
+    <div class="lcd-overlay"></div>
+
+    <div class="container">
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="menu-dropdown" id="menuDropdown">
+            <div id="userInfo" style="padding: 8px 12px; background: var(--button-bg); border-radius: 6px; margin-bottom: 8px; text-align: center;">
+                <div style="font-family: 'codedexs', monospace; font-size: 12px; opacity: 0.8;">Welcome,</div>
+                <div id="usernameDisplay" style="font-family: 'codedex', monospace; font-size: 14px; margin-top: 2px;"></div>
+            </div>
+            <a href="https://wa.me/6287811007088"><i class="fas fa-envelope"></i> Contact Me</a>
+            <a href="https://nelsenchandra.framer.website"><i class="fas fa-globe"></i> Official Website</a>
+        </div>
+
+        <div class="profile-card">
+            <img src="pic.gif" alt="Profile Picture" class="profile-pic" />
+            <div class="title-wrapper">
+                <h1 class="title" id="animatedTitle">Hi, Welcome</h1>
+            </div>
+            <div class="subtitle" style="display: flex; align-items: center; justify-content: center; gap: 5px;">
+                <span>Get Here</span>
+                <span class="typewriter" id="typewriter"></span>
+            </div>
+        </div>
+
+        <div class="links">
+            <a id="startButton" class="link-button">
+                <i class="fas fa-arrow-left" style="color: rgb(255, 0, 0);"></i>
+                <span>Back to Home</span>
+            </a>
+            <a href="https://codedex.io/" class="link-info">
+                <i class="fab fa-github" style="color: rgb(255, 255, 255);"></i> Source Code
+            </a>
+        </div>
+
+        <!-- Pet Container -->
+        <div class="pet-container">
+            <div class="holo-base-glow"></div>
+            <div class="holo-light-sheet"></div>
+            <div class="holo-particle-field"></div>
+            <div class="holo-scanlines"></div>
+            <div class="pet-header">
+                <div class="pet-date" id="currentDate"></div>
+                <div class="pet-level">Level 341</div>
+            </div>
+            <div class="pet-name">
+                <span class="pet-name-text">Pikáchu</span>
+                <span class="pet-name-legendary">STARLIGHT+</span>
+            </div>
+            <div class="pet-image-container">
+                <img src="pet.gif" alt="Pet" class="pet-image">
+                <img src="flash2.gif" alt="Sparkle Effect" class="sparkle-image-flash">
+                <img src="flash2.gif" alt="Sparkle Effect" class="sparkle-image-flash-glow">
+                <img src="sparkle3.gif" alt="Sparkle Effect" class="sparkle-image-new">
+                <img src="sparkle3.gif" alt="Sparkle Effect" class="sparkle-image-glow">
+                <img src="sparkle2.gif" alt="Sparkle Effect" class="sparkle-image"> <!-- Tambahkan ini -->
+            </div>
+            <div class="pet-strike">
+                <img src="strike.gif" alt="Strike" class="strike-gif">
+                <div class="pet-strike-text" id="strikeDays">365 Days strike</div>
+            </div>
+            <div class="pet-buttons-container">
+                <a href="https://www.codedex.io/@nerusen/30-nites-of-code?pet=AHbL0IPjEpcWwCCmXKU6" 
+                class="pet-github-code petGithubCode">
+                    <img src="coin-cropped.png" alt="Codédex" class="pet-github-icon"> Codédex
+                </a>
+                
+                <a href="https://discord.gg/7aBVp23n" 
+                class="pet-github-code petGithubCode">
+                    <img src="discord.png" alt="Codédex" class="pet-github-icon"> Discord
+                </a>
+                
+                <a href="https://open.spotify.com/playlist/0MD20v3MgMFC4hlE5VPRzi?si=a9B151K6Q6KySUORNPawIA" 
+                class="pet-github-code petGithubCode">
+                    <img src="spotify.png" alt="Codédex" class="pet-github-icon"> Spotify
+                </a>
+            </div>
+        </div>
+    </div>
+
+        <div class="footer">
+            © 2025 Nelsen Chandra. All rights reserved.
+        </div>
+    <!-- Load CSS & JS -->
+    <link rel="stylesheet" href="assets/css/bot.css">
+    <script src="assets/js/bot.js"></script>
+    <script>
+        // ====================== CHECK AUTHENTICATION ======================
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Initialize auth system
+            if (!window.authSystem) {
+                await window.authSystem.init();
+            }
+            
+            // Check if user is logged in
+            if (!window.authSystem || !window.authSystem.isLoggedIn()) {
+                // Redirect to login page if not authenticated
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Display username in the menu
+            const currentUser = window.authSystem.getCurrentUser();
+            if (currentUser) {
+                document.getElementById('usernameDisplay').textContent = currentUser.username;
+            }
+        });
+
+        // ====================== AUDIO MANAGEMENT ======================
+        const sounds = {
+            click: new Audio('click.mp3'),
+            error: new Audio('error.mp3'),
+            start: new Audio('start.mp3'),
+            notif: new Audio('notif.mp3'),
+            bgMusic: new Audio('music.mp3')
+        };
+
+        sounds.bgMusic.loop = true;
+
+        function playSound(soundName) {
+            try {
+                sounds[soundName].currentTime = 0;
+                sounds[soundName].muted = localStorage.getItem('muteSounds') === 'true';
+                sounds[soundName].play().catch(e => {
+                    console.log(`Autoplay prevented for ${soundName} sound`);
+                });
+            } catch (error) {
+                console.error(`Error playing ${soundName} sound:`, error);
+            }
+        }
+
+        Object.values(sounds).forEach(sound => {
+            sound.volume = 1.0;
+        });
+
+        sounds.bgMusic.volume = 1.0;
+
+        
+        // ====================== MENU TOGGLE FUNCTIONALITY ======================
+        const menuToggle = document.getElementById('menuToggle');
+        const menuDropdown = document.getElementById('menuDropdown');
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            playSound('click');
+            menuToggle.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !menuDropdown.contains(e.target)) {
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        // ====================== PET NEW ======================
+        const currentDate = document.getElementById('currentDate');
+        const strikeDays = document.getElementById('strikeDays');
+
+        // Set current date
+        const now = new Date();
+        currentDate.textContent = now.toLocaleDateString('en-GB');
+
+        // Hitung strike days sejak tanggal tertentu (akan terus bertambah melewati 365)
+        function calculateStrikeDays(launchDate) {
+            const now = new Date();
+            const diffTime = now - launchDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+            return diffDays;
+        }
+
+        // Format angka dengan comma (misal: 1,024 days)
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Set launch date (ganti dengan tanggal pertama website online)
+        const launchDate = new Date('2023-10-15'); // YYYY-MM-DD
+
+        // Update strike days display
+        const strikeDaysElement = document.getElementById('strikeDays');
+        const days = calculateStrikeDays(launchDate);
+        strikeDaysElement.textContent = `${formatNumber(days)} Days Strike`;
+
+        // Update pet level (1-100 based on days)
+        const petLevel = Math.min(Math.floor(days / 3.65), 500); // Maksimal level 500
+        document.querySelector('.pet-level').textContent = `Level ${petLevel}`;
+
+        // Set GitHub link (you can change this to your own link)
+        const petGithub = document.querySelector('.petGithubCode');
+        if (petGithub) {
+            petGithub.href = "https://www.codedex.io/@nerusen/30-nites-of-code?pet=AHbL0IPjEpcWwCCmXKU6";
+        }
+
+        // ====================== GLOBAL CLICK SOUND ======================
+        // Pasang sound click ke semua elemen interaktif
+        document.addEventListener('click', function(e) {
+            // Cek jika elemen yang diklik adalah elemen interaktif
+            if (e.target.closest('button, a, input[type="submit"], input[type="button"], .link-button, .menu-toggle, .music-toggle')) {
+                playSound('click');
+            }
+        });
+
+        // Typewriter effect initialization
+        const texts = ["Source Code", "Assets", "Discount", "Play Music", "Information"];
+        let textIndex = 0, charIndex = 0, isDeleting = false;
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            const typewriterElement = document.getElementById('typewriter');
+
+            if (isDeleting) {
+                if (charIndex > 0) {
+                    charIndex--;
+                    typewriterElement.textContent = currentText.substring(0, charIndex);
+                    setTimeout(typeWriter, 80); // slower deleting for smoothness
+                } else {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(typeWriter, 500); // pause before typing next text
+                }
+            } else {
+                if (charIndex < currentText.length) {
+                    charIndex++;
+                    typewriterElement.textContent = currentText.substring(0, charIndex);
+                    setTimeout(typeWriter, 120); // typing speed
+                } else {
+                    isDeleting = true;
+                    setTimeout(typeWriter, 1500); // pause at full text
+                }
+            }
+        }
+
+        // Start typewriter effect
+        setTimeout(typeWriter, 1000);
+    
+        // Play success sound on start button click and then navigate
+        const startButton = document.getElementById('startButton');
+        startButton.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Save original button content
+            const originalContent = startButton.innerHTML;
+
+            // Set loading animation content
+            startButton.innerHTML = `
+                <span class="loading-dots" aria-label="Loading">
+                    <span></span><span></span><span></span>
+                </span>
+            `;
+
+            const sound = sounds.start;
+            playSound('error');
+
+            // Add event listener for ended once
+            const onEndedHandler = () => {
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 1000);
+                sound.removeEventListener('ended', onEndedHandler);
+            };
+            sound.addEventListener('ended', onEndedHandler);
+
+            // Fallback navigation in case ended event doesn't fire
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 4000);
+        });
+    </script>
+    <script>
+        // ====================== CHECK AUTHENTICATION ======================
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Initialize auth system
+            if (!window.authSystem) {
+                await window.authSystem.init();
+            }
+            
+            // Check if user is logged in
+            if (!window.authSystem || !window.authSystem.isLoggedIn()) {
+                // Redirect to login page if not authenticated
+                window.location.href = 'login.html';
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
