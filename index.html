@@ -10,7 +10,7 @@
         :root {
             --bg-color: #121212;
             --text-color: #ffffff;
-            --card-bg: rgba(0, 0, 0, 0.452);
+            --card-bg: rgba(0, 0, 0, 0.322);
             --card-border: rgba(255, 255, 255, 0.1);
             --button-bg: rgba(255, 255, 255, 0.1);
             --button-hover: rgba(255, 255, 255, 0.15);
@@ -291,15 +291,17 @@
             right: -2px;
             bottom: -2px;
             background: linear-gradient(45deg, 
-                transparent, 
-                #272727, 
-                #a5a5a5, 
-                #2b2b2b, 
+                transparent,
+                transparent,
+                transparent,
+                #ffffff94,
+                transparent,
+                transparent,
                 transparent);
             background-size: 400% 400%;
             border-radius: 27px;
             z-index: -1;
-            animation: glowing-border 3s linear infinite;
+            animation: glowing-border 9s linear infinite;
         }
 
         @keyframes glowing-border {
@@ -626,7 +628,8 @@
             background-color: var(--card-bg);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            margin-top: 40px;
+            margin-top: 30px;
+            margin-bottom: 50px;
             transition:
                 transform 0.2s,
                 box-shadow 0.2s;
@@ -678,14 +681,22 @@
 
         .card-title {
             font-family: 'codedex', monospace;
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 15px;
             color: #e6e6ef;
         }
 
         .card-description {
+            font-size: 12px;
+            color: #ffffff96;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-nelsen {
             font-size: 14px;
-            color: #666;
+            color: #ffffff;
+            margin-top: -5px;
             margin-bottom: 15px;
         }
 
@@ -798,14 +809,20 @@
                     <span class="yellow"></span>
                     <span class="green"></span>
                 </div>
-                <span class="card-title">Mac-Style Code Preview</span>
+                <span class="card-title">Free Source Code</span>
                 <p class="card-description">
-                    A glimpse of your code in a clean and Mac-like window. Click to explore!
+                    Not Avaible
                 </p>
-                <span class="card-tag">TAG JS</span> <span class="card-tag">TAG JS</span>
+                <span class="card-tag">HTML</span> <span class="card-tag">CSS</span>
                 <div class="code-editor">
-                    <pre><code>&lt;h1&gt; Hello World &lt;/h1&gt;</code></pre>
+                    <pre><code>&lt;h1&gt; Coming Soon &lt;/h1&gt;</code></pre>
                 </div>
+                <p class="card-description">
+                    Source code by
+                </p>
+                <p class="card-nelsen">
+                    Nelsen Chandra
+                </p>
             </div>
         </div>
     </div>

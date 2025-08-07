@@ -202,35 +202,44 @@
         
         // Function to play click sound
         function playClickSound() {
-            clickSound.currentTime = 0;
+            clickSound.currentTime = 0; // Reset audio to start
             clickSound.play().catch(e => console.log('Audio play failed:', e));
         }
 
-        // Define skipElem and nextButton before use
+        // Define elements
         const skipElem = document.getElementById('skip');
         const nextButton = document.getElementById('next-button');
-
-        // Add click sound to skip button
-        skipElem.addEventListener('click', playClickSound);
-
-        // Add click sound to next button
-        nextButton.addEventListener('click', playClickSound);
-
-        // Add click sound to welcome text (if interactive)
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', playClickSound);
-        });
-
-        // Typewriter effect
-        const text = "Hi, Welcome to Nerusen><\n\nTempat di mana kreativitas bertemu inovasi, dan ide-ide sederhana tumbuh menjadi karya yang bermakna.\n\nDidirikan sejak Maret 2021, Nerusen hadir sebagai identitas kreatif independen yang memadukan estetika modern, ketelitian profesional, dan semangat personal dalam setiap proyek.\n\nNerusen - \"Creating Beyond the Lines\".";
-        const typingSpeed = 100;
-        const initialDelay = 2000;
         const welcomeTextElem = document.getElementById('welcome-text');
         const contentElem = document.getElementById('content');
 
+        // Typewriter variables
+        const text = "Hi, Welcome to Nerusen><\n\nTempat di mana kreativitas bertemu inovasi, dan ide-ide sederhana tumbuh menjadi karya yang bermakna.\n\nDidirikan sejak Maret 2021, Nerusen hadir sebagai identitas kreatif independen yang memadukan estetika modern, ketelitian profesional, dan semangat personal dalam setiap proyek.\n\nNerusen - \"Creating Beyond the Lines\".";
+        const typingSpeed = 100;
+        const initialDelay = 2000;
         let charIndex = 0;
         let typingInterval = null;
         let typingDone = false;
+
+        // Function to skip typing
+        function skipTyping() {
+            playClickSound();
+            clearInterval(typingInterval);
+            
+            // Immediately show all text
+            welcomeTextElem.textContent = text;
+            
+            // Remove cursor if any
+            welcomeTextElem.classList.remove('typing');
+            const existingCursor = welcomeTextElem.querySelector('.cursor');
+            if (existingCursor) {
+                existingCursor.remove();
+            }
+            
+            // Mark as done and show next button
+            typingDone = true;
+            showNextButton();
+            skipElem.style.display = 'none';
+        }
 
         // Show content container after initial delay
         function showContent() {
@@ -243,12 +252,17 @@
         function startTyping() {
             typingInterval = setInterval(() => {
                 if (charIndex < text.length) {
+                    // Remove existing cursor span if any
                     const existingCursor = welcomeTextElem.querySelector('.cursor');
                     if (existingCursor) {
                         existingCursor.remove();
                     }
+
+                    // Append next character as text node
                     welcomeTextElem.appendChild(document.createTextNode(text.charAt(charIndex)));
                     charIndex++;
+
+                    // Append cursor span
                     const cursorSpan = document.createElement('span');
                     cursorSpan.className = 'cursor';
                     welcomeTextElem.appendChild(cursorSpan);
@@ -273,6 +287,18 @@
         function showNextButton() {
             nextButton.style.display = 'inline-block';
         }
+
+        // Event listeners
+        skipElem.addEventListener('click', skipTyping);
+        
+        // Next button event listener with sound effect
+        nextButton.addEventListener('click', function(e) {
+            playClickSound();
+            // Optional: Add slight delay before navigation to let sound play
+            setTimeout(() => {
+                window.location.href = this.getAttribute('href');
+            }, 100);
+        });
 
         // Start after initial delay
         setTimeout(showContent, initialDelay);
