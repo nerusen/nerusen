@@ -33,15 +33,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             padding: 20px;
+            padding-top: 10vh;
             background: 
                 linear-gradient(rgba(0, 0, 0, 0.411), rgba(33, 33, 56, 0.3)),
                 url('back38.gif') no-repeat center center fixed;
             background-size: cover;
             background-attachment: scroll;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -261,12 +263,14 @@
         .bottom-nav {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: fit-content;
             background: var(--card-bg);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 25px;
             padding: 8px 16px;
             display: flex;
@@ -275,10 +279,55 @@
             z-index: 1000;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            overflow: hidden;
         }
 
+        /* Glowing green animated border */
+        .bottom-nav::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                transparent, 
+                #272727, 
+                #a5a5a5, 
+                #2b2b2b, 
+                transparent);
+            background-size: 400% 400%;
+            border-radius: 27px;
+            z-index: -1;
+            animation: glowing-border 3s linear infinite;
+        }
+
+        @keyframes glowing-border {
+            0% {
+                background-position: 0% 50%;
+                box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+            }
+            25% {
+                background-position: 100% 0%;
+                box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+            }
+            50% {
+                background-position: 100% 100%;
+                box-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00, 0 0 35px #00ff00;
+            }
+            75% {
+                background-position: 0% 100%;
+                box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+            }
+            100% {
+                background-position: 0% 50%;
+                box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+            }
+        }
+
+
         .bottom-nav:hover {
-            transform: translateX(-50%) translateY(-2px);
+            transform: translateY(-2px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
         }
 
@@ -317,10 +366,10 @@
         .start-button {
             margin-top: 30px;
             font-family: 'codedexs', monospace;
-            background: var(--button-bg);
+            background: linear-gradient(135deg, rgba(0, 255, 21, 0.3), rgba(0, 255, 136, 0.2));
             backdrop-filter: blur(10px);
-            border: 1.5px solid var(--card-border);
-            border-radius: 12px;
+            border: 1.5px solid rgba(43, 255, 0, 0.4);
+            border-radius: 25px;
             padding: 12px 25px;
             color: var(--text-color);
             font-weight: 500;
@@ -330,48 +379,224 @@
             justify-content: center;
             gap: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             user-select: none;
-            min-width: 120px;
+            width: 120px;
+            height: 45px;
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 0 rgba(0, 255, 136, 0.4);
+        }
+
+        .start-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .start-button:hover:not(.loading)::before {
+            left: 100%;
         }
 
         .start-button:hover:not(.loading) {
-            background: var(--button-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.4), rgba(0, 255, 21, 0.3));
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3), 0 0 20px rgba(0, 255, 136, 0.2);
+            border-color: rgba(0, 255, 136, 0.6);
+        }
+
+        .start-button:active:not(.loading) {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
         }
 
         .start-button.loading {
             cursor: not-allowed;
-            opacity: 0.8;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-color: rgba(255, 255, 255, 0.2);
+            animation: pulse-glow 2s ease-in-out infinite;
         }
 
         .start-button .fa-bolt {
             font-size: 16px;
-            transition: opacity 0.3s ease;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 3px rgba(0, 255, 136, 0.5));
+        }
+
+        .start-button:hover:not(.loading) .fa-bolt {
+            animation: bolt-flash 1.5s ease-in-out infinite;
         }
 
         .start-button.loading .fa-bolt {
             opacity: 0;
+            transform: scale(0);
         }
 
+        /* Enhanced loading animation */
         .loading-spinner {
-            width: 16px;
-            height: 16px;
-            border: 2px solid var(--card-border);
-            border-top: 2px solid var(--text-color);
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            border-top: 2px solid rgba(0, 255, 136, 0.8);
+            border-right: 2px solid rgba(0, 255, 136, 0.6);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: neon-spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
         }
 
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes neon-spin {
+            0% { 
+                transform: translate(-50%, -50%) rotate(0deg);
+                box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.8), 0 0 30px rgba(0, 255, 136, 0.4);
+            }
+            100% { 
+                transform: translate(-50%, -50%) rotate(360deg);
+                box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(0, 255, 136, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(0, 255, 136, 0.4), 0 0 25px rgba(0, 255, 136, 0.2);
+            }
+        }
+
+        @keyframes bolt-flash {
+            0%, 100% {
+                filter: drop-shadow(0 0 3px rgba(0, 255, 136, 0.5));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 8px rgba(0, 255, 136, 1));
+                transform: scale(1.2);
+            }
+        }
+
+        /* About Me Container Styles */
+        .about-container {
+            margin-top: 40px;
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 15px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .about-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-title {
+            font-family: 'codedex', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .about-description {
+            font-family: 'codedexs', monospace;
+            font-size: 14px;
+            color: var(--text-color);
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .about-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .github-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(0, 255, 21, 0.2), rgba(0, 255, 136, 0.1));
+            border: 1px solid rgba(43, 255, 0, 0.3);
+            border-radius: 20px;
+            padding: 8px 16px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: 'codedexs', monospace;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .github-button:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 255, 21, 0.2));
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .github-button i {
+            font-size: 14px;
+        }
+
+        .author-name {
+            font-family: 'codedexs', monospace;
+            font-size: 12px;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* Responsive adjustments for about container */
+        @media (max-width: 480px) {
+            .about-container {
+                padding: 20px;
+                margin-top: 30px;
+            }
+            
+            .about-title {
+                font-size: 20px;
+            }
+            
+            .about-description {
+                font-size: 12px;
+            }
+            
+            .about-footer {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .github-button {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+            
+            .author-name {
+                font-size: 11px;
+            }
         }
 
         /* Responsive adjustments for nav */
@@ -387,6 +612,131 @@
                 font-size: 16px;
             }
         }
+
+        /* From Uiverse.io by mymiamo */ 
+        .card {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #0d1117;
+            border-radius: 10px;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            margin-top: 25px;
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+            position: relative;
+            font-family:
+                codedexs,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Oxygen,
+                Ubuntu,
+                Cantarell,
+                "Open Sans",
+                "Helvetica Neue",
+                sans-serif;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .mac-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .mac-header span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .mac-header .red {
+            background-color: #ff5f57;
+        }
+
+        .mac-header .yellow {
+            background-color: #ffbd2e;
+        }
+
+        .mac-header .green {
+            background-color: #28c941;
+        }
+
+        .card-title {
+            font-family: 'codedex', monospace;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #e6e6ef;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .card .card-tag {
+            display: inline-block;
+            font-size: 10px;
+            border-radius: 5px;
+            background-color: var(--button-bg);
+            padding: 4px;
+            margin-block-end: 12px;
+            color: #dcdcdc;
+            border: 1px solid #f3f3f34b;
+        }
+
+        .code-editor {
+            background-color: var(--button-bg);
+            color: #dcdcdc;
+            font-family:
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Oxygen,
+                Ubuntu,
+                Cantarell,
+                "Open Sans",
+                "Helvetica Neue",
+                monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            border-radius: 5px;
+            padding: 15px;
+            overflow: auto;
+            height: 150px;
+            border: 1px solid #f3f3f34b;
+        }
+
+        .code-editor::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .code-editor::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 4px;
+        }
+
+        .code-editor pre code {
+            white-space: pre-wrap;
+            display: block;
+        }
+
     </style>
 </head>
 <body>
@@ -401,9 +751,9 @@
         
         <!-- Dropdown Menu -->
         <div class="menu-dropdown">
-            <a href="login.html"><i class="fas fa-qrcode"></i> Login</a>
-            <a href="qris.jpg"><i class="fas fa-qrcode"></i> Qris</a>
-            <a href="https://drive.google.com/drive/folders/1--_tvxRn7lTVFvLeLikJVa1tDk2oyWfH"><i class="fab fa-google-drive"></i> Drive</a>
+            <a href="home.html"><i class="fas fa-home"></i> Home</a>
+            <a href="pet.html"><i class="fas fa-paw"></i> Pet</a>
+            <a href="https://discord.gg/nerusen"><i class="fab fa-discord"></i> Discord</a>
             <a href="https://github.com/nerusen"><i class="fab fa-github"></i> GitHub</a>
         </div>
 
@@ -423,6 +773,39 @@
                 <span id="start-text">Start</span>
                 <div class="loading-spinner" id="loading-spinner" style="display: none;"></div>
             </button>
+            
+            <!-- About Me Container -->
+            <div class="about-container">
+                <h2 class="about-title">About Me</h2>
+                <p class="about-description">
+                    A passionate developer creating digital experiences with code and creativity. 
+                    Exploring the intersection of technology and art.
+                </p>
+                <div class="about-footer">
+                    <a href="https://github.com/nerusen" class="github-button" target="_blank">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <span class="author-name">Nelsen Chandra</span>
+                </div>
+            </div>
+
+            <!-- From Uiverse.io by mymiamo --> 
+            <div class="card">
+                <div class="mac-header">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </div>
+                <span class="card-title">Mac-Style Code Preview</span>
+                <p class="card-description">
+                    A glimpse of your code in a clean and Mac-like window. Click to explore!
+                </p>
+                <span class="card-tag">TAG JS</span> <span class="card-tag">TAG JS</span>
+                <div class="code-editor">
+                    <pre><code>&lt;h1&gt; Hello World &lt;/h1&gt;</code></pre>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -458,7 +841,17 @@
     </nav>
 
     <script>
+        // Create audio element for click sound
+        const clickSound = new Audio('click.mp3');
+        
+        // Function to play click sound
+        function playClickSound() {
+            clickSound.currentTime = 0;
+            clickSound.play().catch(e => console.log('Audio play failed:', e));
+        }
+
         function toggleMenu() {
+            playClickSound();
             const menuToggle = document.querySelector('.menu-toggle');
             const menuDropdown = document.querySelector('.menu-dropdown');
             
@@ -488,8 +881,18 @@
             }
         });
 
+        // Add click sound to menu dropdown links
+        document.querySelectorAll('.menu-dropdown a').forEach(link => {
+            link.addEventListener('click', playClickSound);
+        });
+
+        // Add click sound to bottom navigation items
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+            item.addEventListener('click', playClickSound);
+        });
+
         // Typewriter effect
-        const typewriterText = "Welcome to my digital space";
+        const typewriterText = "Welcome to Nerusen World";
         const typewriterElement = document.querySelector('.typewriter');
         let index = 0;
 
@@ -506,6 +909,7 @@
 
         // Start button functionality
         function startWelcome() {
+            playClickSound();
             const startButton = document.getElementById('start-button');
             const startIcon = document.getElementById('start-icon');
             const startText = document.getElementById('start-text');
