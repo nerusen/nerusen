@@ -615,6 +615,215 @@
             }
         }
 
+        .github-contributions {
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.322);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 50px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .github-contributions:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .contributions-title {
+            font-family: 'codedex', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .contributions-subtitle {
+            font-family: 'codedexs', monospace;
+            font-size: 12px;
+            color: #ffffff;
+            opacity: 0.7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contributions-scroll-container {
+            width: 100%;
+            overflow-x: auto;
+            position: relative;
+            border-radius: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .contributions-scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .contributions-scroll-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .contributions-scroll-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .contributions-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .contribution-months {
+            display: grid;
+            grid-template-columns: repeat(53, 1fr);
+            gap: 0;
+            margin: 0;
+            width: 100%;
+            font-family: 'codedexs', monospace;
+            font-size: 9px;
+            color: #ffffff;
+            opacity: 0.7;
+            text-align: left;
+            padding: 0;
+        }
+
+        .contribution-grid {
+            display: grid;
+            grid-template-columns: repeat(48, 1fr);
+            grid-template-rows: repeat(7, 1fr);
+            gap: 2px;
+            margin: 0;
+            width: fit-content;
+            min-width: 100%;
+            padding: 0;
+            height: 84px;
+        }
+
+        .contribution-day {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .contribution-day:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .level-0 { background-color: #161b22; }
+        .level-1 { background-color: #0e4429; }
+        .level-2 { background-color: #006d32; }
+        .level-3 { background-color: #26a641; }
+        .level-4 { background-color: #39d353; }
+
+        .contribution-legend {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-family: 'codedexs', monospace;
+            font-size: 10px;
+            color: #ffffff;
+            opacity: 0.7;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+
+        .contribution-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-family: 'codedexs', monospace;
+            font-size: 11px;
+            color: #ffffff;
+            opacity: 0.8;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 14px;
+            font-weight: bold;
+            color: #39d353;
+        }
+
+        .month-label {
+            grid-column: span 4;
+            text-align: left;
+            padding-left: 2px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+            .contribution-grid {
+                grid-template-columns: repeat(53, 1fr);
+                grid-template-rows: repeat(7, 1fr);
+            }
+            
+            .contribution-day {
+                width: 6px;
+                height: 6px;
+            }
+            
+            .contribution-months {
+                grid-template-columns: repeat(53, 1fr);
+                font-size: 7px;
+            }
+            
+            .contributions-scroll-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .contribution-day {
+                width: 5px;
+                height: 5px;
+            }
+            
+            .contribution-months {
+                font-size: 6px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .contribution-day {
+                width: 4px;
+                height: 4px;
+            }
+        }
+
         /* From Uiverse.io by mymiamo */ 
         .card {
             width: 100%;
@@ -629,7 +838,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             margin-top: 30px;
-            margin-bottom: 50px;
             transition:
                 transform 0.2s,
                 box-shadow 0.2s;
@@ -697,6 +905,7 @@
             font-size: 14px;
             color: #ffffff;
             margin-top: -5px;
+            margin-bottom: 15px;
         }
 
         .card .card-tag {
@@ -823,6 +1032,61 @@
                     Nelsen Chandra
                 </p>
             </div>
+            <!-- GitHub Contributions Graph - Tambahkan ini ke dalam body HTML Anda -->
+            <div class="github-contributions">
+                <h2 class="contributions-title">GitHub Contributions</h2>
+                <p class="contributions-subtitle">365 contributions in the last year</p>
+                <div class="contributions-scroll-container">
+                    <div class="contribution-months">
+                        <span style="grid-column: 1 / span 5">Jan</span>
+                        <span style="grid-column: 6 / span 4">Feb</span>
+                        <span style="grid-column: 10 / span 5">Mar</span>
+                        <span style="grid-column: 15 / span 4">Apr</span>
+                        <span style="grid-column: 19 / span 5">May</span>
+                        <span style="grid-column: 24 / span 4">Jun</span>
+                        <span style="grid-column: 28 / span 5">Jul</span>
+                        <span style="grid-column: 33 / span 4">Aug</span>
+                        <span style="grid-column: 37 / span 5">Sep</span>
+                        <span style="grid-column: 42 / span 4">Oct</span>
+                        <span style="grid-column: 46 / span 5">Nov</span>
+                        <span style="grid-column: 51 / span 3">Dec</span>
+                    </div>
+                    <div class="contribution-grid" id="contribution-grid"></div>
+                </div>
+                <div class="contribution-legend">
+                    <span>Less</span>
+                    <div class="legend-item">
+                        <div class="legend-color level-0"></div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color level-1"></div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color level-2"></div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color level-3"></div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color level-4"></div>
+                    </div>
+                    <span>More</span>
+                </div>
+                <div class="contribution-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-contributions">1,234</div>
+                        <div>Total</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="current-streak">42</div>
+                        <div>Day Streak</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="longest-streak">89</div>
+                        <div>Longest Streak</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -923,6 +1187,89 @@
 
         // Start typewriter effect after page loads
         window.addEventListener('load', typeWriter);
+
+        // Generate GitHub contribution graph
+function generateContributions() {
+    const grid = document.getElementById('contribution-grid');
+    const totalDays = 365;
+    const levels = ['level-0', 'level-1', 'level-2', 'level-3', 'level-4'];
+    const weights = [0.35, 0.25, 0.2, 0.15, 0.05]; // Probability weights for each level
+    
+    // Clear existing content
+    grid.innerHTML = '';
+    
+    let totalContributions = 0;
+    let currentStreak = 0;
+    let longestStreak = 0;
+    let tempStreak = 0;
+    
+    // Generate contribution data
+    for (let i = 0; i < totalDays; i++) {
+        const day = document.createElement('div');
+        day.className = 'contribution-day';
+        
+        // Randomly select contribution level based on weights
+        const random = Math.random();
+        let cumulativeWeight = 0;
+        let selectedLevel = 0;
+        
+        for (let j = 0; j < weights.length; j++) {
+            cumulativeWeight += weights[j];
+            if (random <= cumulativeWeight) {
+                selectedLevel = j;
+                break;
+            }
+        }
+        
+        // Make it more realistic - higher chance of activity on weekdays
+        const date = new Date();
+        date.setDate(date.getDate() - (totalDays - i));
+        const dayOfWeek = date.getDay();
+        
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            // Weekend - slightly lower activity
+            if (selectedLevel > 1 && Math.random() < 0.3) {
+                selectedLevel = Math.max(0, selectedLevel - 1);
+            }
+        }
+        
+        day.classList.add(levels[selectedLevel]);
+        
+        // Calculate contributions for this day
+        const contributions = selectedLevel * (Math.floor(Math.random() * 8) + 2);
+        totalContributions += contributions;
+        
+        // Track streaks
+        if (selectedLevel > 0) {
+            tempStreak++;
+            currentStreak = tempStreak;
+        } else {
+            longestStreak = Math.max(longestStreak, tempStreak);
+            tempStreak = 0;
+        }
+        
+        // Add tooltip
+        const dateStr = date.toLocaleDateString('en-US', { 
+            weekday: 'short', 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+        });
+        
+        day.title = `${contributions} contributions on ${dateStr}`;
+        
+        grid.appendChild(day);
+    }
+    
+    // Update statistics
+    longestStreak = Math.max(longestStreak, tempStreak);
+    document.getElementById('total-contributions').textContent = totalContributions.toLocaleString();
+    document.getElementById('current-streak').textContent = currentStreak;
+    document.getElementById('longest-streak').textContent = longestStreak;
+}
+
+// Initialize contribution graph when page loads
+document.addEventListener('DOMContentLoaded', generateContributions);
 
         // Start button functionality
         function startWelcome() {
