@@ -492,6 +492,7 @@
         /* About Me Container Styles */
         .about-container {
             margin-top: 40px;
+            margin-bottom: -30px;
             background: var(--card-bg);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
@@ -824,7 +825,7 @@
             background-color: var(--card-bg);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            margin-top: 30px;
+            margin-top: -25px;
             transition:
                 transform 0.2s,
                 box-shadow 0.2s;
@@ -945,9 +946,9 @@
             display: block;
         }
 
-        /* === NEW SMOOTH INFINITY MARQUEE SYSTEM === */
+        /* === PERFECT SEAMLESS INFINITY MARQUEE SYSTEM === */
         
-        /* Smooth Infinity Marquee Container - Full Width Edge to Edge */
+        /* Perfect Seamless Infinity Marquee Container */
         .infinity-marquee-container {
             position: relative;
             width: 100vw;
@@ -955,29 +956,47 @@
             margin-right: calc(-50vw + 50%);
             overflow: hidden;
             background: transparent;
-            border-radius: 0;
-            margin-top: 10px;
-            margin-bottom: 20px;
+            margin: 10px 0 20px 0;
             padding: 0;
             left: 0;
             right: 0;
         }
 
-        /* Infinity Track - Seamless Loop */
+        /* Infinity Row Container */
+        .infinity-marquee-row {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* Perfect Seamless Track - No Gaps Guaranteed */
         .infinity-track {
             display: flex;
             gap: 20px;
             padding: 15px 0;
-            animation: infinity-scroll 90s linear infinite;
             will-change: transform;
-            width: fit-content;
+            width: max-content;
+            backface-visibility: hidden;
+            perspective: 1000px;
+            transform: translateZ(0);
         }
 
+        /* Left to Right Animation - Optimized for seamless loop */
+        .infinity-track.scroll-left {
+            animation: infinity-scroll-left 25s linear infinite;
+        }
+
+        /* Right to Left Animation - Optimized for seamless loop */
+        .infinity-track.scroll-right {
+            animation: infinity-scroll-right 25s linear infinite;
+        }
+
+        /* Reverse direction for second row - Optimized timing */
         .infinity-track.reverse {
-            animation: infinity-scroll-reverse 25s linear infinite;
+            animation: infinity-scroll-reverse 30s linear infinite;
         }
 
-        /* Enhanced Tag Styles for Smooth Animation */
+        /* Enhanced Tag Styles for Perfect Animation */
         .infinity-tag {
             display: flex;
             align-items: center;
@@ -995,6 +1014,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .infinity-tag::before {
@@ -1024,15 +1044,15 @@
             border-color: rgba(0, 255, 136, 0.4);
         }
 
-        /* Icon Styles with Enhanced Colors */
+        /* Icon Styles */
         .infinity-tag i {
             font-size: 18px;
             transition: all 0.3s ease;
             filter: drop-shadow(0 0 3px currentColor);
         }
 
-        /* Seamless Infinity Scroll Animation */
-        @keyframes infinity-scroll {
+        /* Perfect Seamless Keyframes - No Jumps */
+        @keyframes infinity-scroll-left {
             0% {
                 transform: translateX(0);
             }
@@ -1041,6 +1061,16 @@
             }
         }
 
+        @keyframes infinity-scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Ultra-smooth reverse animation for seamless loop */
         @keyframes infinity-scroll-reverse {
             0% {
                 transform: translateX(-50%);
@@ -1050,16 +1080,27 @@
             }
         }
 
-        /* Responsive Infinity Marquee */
+        /* Ultra-Smooth Performance Optimizations */
+        .infinity-track,
+        .infinity-track * {
+            will-change: transform;
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
             .infinity-marquee-container {
-                margin: 20px 0;
-                padding: 15px 0;
+                margin: 15px 0;
             }
             
             .infinity-track {
-                gap: 20px;
-                animation-duration: 20s;
+                gap: 15px;
+            }
+            
+            .infinity-track.scroll-left,
+            .infinity-track.scroll-right {
+                animation-duration: 30s;
             }
             
             .infinity-tag {
@@ -1070,13 +1111,33 @@
 
         @media (max-width: 480px) {
             .infinity-track {
-                gap: 15px;
-                animation-duration: 15s;
+                gap: 12px;
+            }
+            
+            .infinity-track.scroll-left,
+            .infinity-track.scroll-right {
+                animation-duration: 25s;
             }
             
             .infinity-tag {
                 padding: 10px 16px;
                 font-size: 12px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .infinity-track {
+                gap: 10px;
+            }
+            
+            .infinity-track.scroll-left,
+            .infinity-track.scroll-right {
+                animation-duration: 20s;
+            }
+            
+            .infinity-tag {
+                padding: 8px 14px;
+                font-size: 11px;
             }
         }
 
@@ -1134,11 +1195,59 @@
             </div>
         </div>
     </div>
-            <!-- NEW SMOOTH INFINITY MARQUEE SECTION -->
+            <!-- NEW SMOOTH INFINITY MARQUEE SECTION - REORGANIZED FOR SEAMLESS LOOPING -->
             <div class="infinity-marquee-container">
-                <!-- First Row - Left to Right -->
+                <!-- First Row - Left to Right with Duplicated Content for Seamless Loop -->
                 <div class="infinity-marquee-row">
-                    <div class="infinity-track">
+                    <div class="infinity-track scroll-left">
+                        <!-- First Set -->
+                        <div class="infinity-tag"><i class="fab fa-html5" style="color: #E34F26;"></i> HTML5</div>
+                        <div class="infinity-tag"><i class="fab fa-css3-alt" style="color: #1572B6;"></i> CSS3</div>
+                        <div class="infinity-tag"><i class="fab fa-js" style="color: #F7DF1E;"></i> JavaScript</div>
+                        <div class="infinity-tag"><i class="fab fa-react" style="color: #61DAFB;"></i> React</div>
+                        <div class="infinity-tag"><i class="fab fa-node-js" style="color: #339933;"></i> Node.js</div>
+                        <div class="infinity-tag"><i class="fab fa-php" style="color: #777BB4;"></i> PHP</div>
+                        <div class="infinity-tag"><i class="fab fa-python" style="color: #3776AB;"></i> Python</div>
+                        <div class="infinity-tag"><i class="fab fa-git-alt" style="color: #F05032;"></i> Git</div>
+                        <div class="infinity-tag"><i class="fab fa-github" style="color: #ffffff;"></i> GitHub</div>
+                        <div class="infinity-tag"><i class="fas fa-rocket" style="color: #ffffff;"></i> Vercel</div>
+                        <div class="infinity-tag"><i class="fab fa-docker" style="color: #2496ED;"></i> Docker</div>
+                        <div class="infinity-tag"><i class="fas fa-database" style="color: #47A248;"></i> MongoDB</div>
+                        <div class="infinity-tag"><i class="fas fa-database" style="color: #4479A1;"></i> MySQL</div>
+                        <div class="infinity-tag"><i class="fas fa-database" style="color: #336791;"></i> PostgreSQL</div>
+                        <div class="infinity-tag"><i class="fas fa-code" style="color: #3178C6;"></i> TypeScript</div>
+                        <div class="infinity-tag"><i class="fab fa-vuejs" style="color: #4FC08D;"></i> Vue.js</div>
+                        <div class="infinity-tag"><i class="fab fa-angular" style="color: #DD0031;"></i> Angular</div>
+                        <div class="infinity-tag"><i class="fab fa-bootstrap" style="color: #7952B3;"></i> Bootstrap</div>
+                        <div class="infinity-tag"><i class="fas fa-wind" style="color: #4FC08D;"></i> Tailwind</div>
+                        <div class="infinity-tag"><i class="fab fa-sass" style="color: #CC6699;"></i> Sass</div>
+                        <div class="infinity-tag"><i class="fas fa-cogs" style="color: #8DD6F9;"></i> Webpack</div>
+                        <div class="infinity-tag"><i class="fas fa-server" style="color: #339933;"></i> Express</div>
+                        <div class="infinity-tag"><i class="fas fa-fire" style="color: #FFCA28;"></i> Firebase</div>
+                        <div class="infinity-tag"><i class="fab fa-nextjs" style="color: #51ff00;"></i> Next.js</div>
+                        <div class="infinity-tag"><i class="fab fa-nuxtjs" style="color: #00DC82;"></i> Nuxt.js</div>
+                        <div class="infinity-tag"><i class="fab fa-gatsby" style="color: #663399;"></i> Gatsby</div>
+                        <div class="infinity-tag"><i class="fab fa-graphql" style="color: #E10098;"></i> GraphQL</div>
+                        <div class="infinity-tag"><i class="fas fa-redis" style="color: #DC382D;"></i> Redis</div>
+                        <div class="infinity-tag"><i class="fas fa-server" style="color: #009639;"></i> Nginx</div>
+                        <div class="infinity-tag"><i class="fab fa-aws" style="color: #FF9900;"></i> AWS</div>
+                        <div class="infinity-tag"><i class="fab fa-linux" style="color: rgb(255, 255, 255);"></i> Linux</div>
+                        <div class="infinity-tag"><i class="fas fa-code" style="color: #007ACC;"></i> VS Code</div>
+                        <div class="infinity-tag"><i class="fab fa-figma" style="color: #F24E1E;"></i> Figma</div>
+                        <div class="infinity-tag"><i class="fas fa-palette" style="color: #00C4CC;"></i> Canva</div>
+                        <div class="infinity-tag"><i class="fas fa-sticky-note" style="color: #bbff00;"></i> Notion</div>
+                        <div class="infinity-tag"><i class="fab fa-slack" style="color: #4A154B;"></i> Slack</div>
+                        <div class="infinity-tag"><i class="fab fa-discord" style="color: #5865F2;"></i> Discord</div>
+                        <div class="infinity-tag"><i class="fab fa-jenkins" style="color: #D24939;"></i> Jenkins</div>
+                        <div class="infinity-tag"><i class="fas fa-dharmachakra" style="color: #326CE5;"></i> Kubernetes</div>
+                        <div class="infinity-tag"><i class="fas fa-layer-group" style="color: #2496ED;"></i> Docker Compose</div>
+                        <div class="infinity-tag"><i class="fas fa-mobile-alt" style="color: #A4C639;"></i> Android</div>
+                        <div class="infinity-tag"><i class="fab fa-apple" style="color: #A8AAAC;"></i> iOS</div>
+                        <div class="infinity-tag"><i class="fas fa-cloud" style="color: #00BFFF;"></i> Azure</div>
+                        <div class="infinity-tag"><i class="fas fa-globe" style="color: #FF7139;"></i> Netlify</div>
+                        <div class="infinity-tag"><i class="fas fa-code-branch" style="color: #F05032;"></i> GitLab</div>
+                        <div class="infinity-tag"><i class="fas fa-bug" style="color: #7548A6;"></i> Testing</div>
+                        <!-- Duplicated Set for Seamless Loop -->
                         <div class="infinity-tag"><i class="fab fa-html5" style="color: #E34F26;"></i> HTML5</div>
                         <div class="infinity-tag"><i class="fab fa-css3-alt" style="color: #1572B6;"></i> CSS3</div>
                         <div class="infinity-tag"><i class="fab fa-js" style="color: #F7DF1E;"></i> JavaScript</div>
@@ -1237,9 +1346,27 @@
                         <div class="infinity-tag"><i class="fas fa-globe" style="color: #FF7139;"></i> Netlify</div>
                         <div class="infinity-tag"><i class="fas fa-code-branch" style="color: #F05032;"></i> GitLab</div>
                         <div class="infinity-tag"><i class="fas fa-bug" style="color: #7548A6;"></i> Testing</div>
-                    </div>
-                </div>
-            </div>
+                        <!-- Duplicated Set for Seamless Loop -->
+                        <div class="infinity-tag"><i class="fab fa-html5" style="color: #E34F26;"></i> HTML5</div>
+                        <div class="infinity-tag"><i class="fab fa-css3-alt" style="color: #1572B6;"></i> CSS3</div>
+                        <div class="infinity-tag"><i class="fab fa-js" style="color: #F7DF1E;"></i> JavaScript</div>
+                        <div class="infinity-tag"><i class="fab fa-react" style="color: #61DAFB;"></i> React</div>
+                        <div class="infinity-tag"><i class="fab fa-node-js" style="color: #339933;"></i> Node.js</div>
+                        <div class="infinity-tag"><i class="fab fa-php" style="color: #777BB4;"></i> PHP</div>
+                        <div class="infinity-tag"><i class="fab fa-python" style="color: #3776AB;"></i> Python</div>
+                        <div class="infinity-tag"><i class="fab fa-git-alt" style="color: #F05032;"></i> Git</div>
+                        <div class="infinity-tag"><i class="fab fa-github" style="color: #ffffff;"></i> GitHub</div>
+                        <div class="infinity-tag"><i class="fas fa-rocket" style="color: #ffffff;"></i> Vercel</div>
+                        <div class="infinity-tag"><i class="fab fa-docker" style="color: #2496ED;"></i> Docker</div>
+                        <div class="infinity-tag"><i class="fas fa-database" style="color: #47A248;"></i> MongoDB</div>
+                        <div class="infinity-tag"><i class="fas fa-database" style="color: #4479A1;"></i> MySQL</div>
+                        <div class="infinity-tag"><i class="fas fa-database" style="color: #336791;"></i> PostgreSQL</div>
+                        <div class="infinity-tag"><i class="fas fa-code" style="color: #3178C6;"></i> TypeScript</div>
+                        <div class="infinity-tag"><i class="fab fa-vuejs" style="color: #4FC08D;"></i> Vue.js</div>
+                        <div class="infinity-tag"><i class="fab fa-angular" style="color: #DD0031;"></i> Angular</div>
+                        <div class="infinity-tag"><i class="fab fa-bootstrap" style="color: #7952B3;"></i> Bootstrap</div>
+                        <div class="infinity-tag"><i class="fas fa-wind" style="color: #4FC08D;"></i> Tailwind</div>
+                        <div class="infinity-tag"><i class="fab fa-sass" style="color: #CC6699;"></i> Sass</div>
         </div>
     </div>
     <div class="container">
