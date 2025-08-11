@@ -263,13 +263,16 @@
             font-weight: 700;
             text-align: center;
             margin-bottom: 10px;
+            color: #ffffff !important;
+            opacity: 1 !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .subtitle {
             font-family: 'codedexs', monospace;
             font-size: 18px;
-            color: var(--text-color);
-            opacity: 0.8;
+            color: #ffffff !important;
+            opacity: 0.9 !important;
             margin-bottom: 30px;
             display: flex;
             align-items: center;
@@ -427,7 +430,7 @@
             height: 45px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 0 rgba(0, 255, 136, 0.4);
+            box-shadow: 0 0 0 rgba(0, 255, 136, 0.822);
         }
 
         .start-button::before {
@@ -448,7 +451,7 @@
         .start-button:hover:not(.loading) {
             background: linear-gradient(135deg, rgba(0, 255, 136, 0.4), rgba(0, 255, 21, 0.3));
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3), 0 0 20px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 8px 25px rgba(9, 255, 0, 0.3), 0 0 20px rgba(0, 255, 136, 0.2);
             border-color: rgba(0, 255, 136, 0.6);
         }
 
@@ -615,7 +618,86 @@
         .footer-start {
             font-family: 'codedexs', monospace;
             font-size: 12px;
-            margin-top: 8px;
+            line-height: 20px;
+            margin-top: 15px;
+            transition: all 0.5s ease;
+        }
+
+        .nelsen {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(0, 255, 21, 0.288), rgba(0, 255, 136, 0.3));
+            border: 1px solid rgba(43, 255, 0, 0.411);
+            border-radius: 30px;
+            padding: 2px 10px;
+            margin-right: 7px;
+            margin-left: 7px;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.445);
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-family: 'codedexs', monospace;
+            font-size: 10px;
+            perspective: 300px;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .nelsen:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 21, 0.288), rgba(0, 255, 136, 0.3));
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.63);
+            border: 1px solid rgba(43, 255, 0, 0.411);
+            transform: rotateX(10deg) rotateY(10deg) rotate(8deg) skew(-10deg) translateX(-10px) scale(1.1);
+            transition: all 0.5s ease;
+        }
+
+        .nelsen:hover i {
+            transform: scale(1.2);
+        }
+
+        .nelsen i {
+            color:rgb(255, 208, 0);
+            font-size: 10px;
+            transition: all 0.5s ease;
+        }
+
+        .info {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.637), rgba(255, 0, 0, 0.349));
+            border: 1px solid rgba(255, 0, 0, 0.932);
+            border-radius: 5px;
+            padding: 2px 10px;
+            margin-right: 7px;
+            margin-left: 7px;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.445);
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-family: 'codedexs', monospace;
+            font-size: 10px;
+            transform: rotate(-8deg);
+            transition: all 0.5s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .info:hover {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.637), rgba(255, 0, 0, 0.349));
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.63);
+            border: 1px solid rgba(255, 0, 0, 0.932);
+            transform: rotateX(-20deg) rotateY(10deg) rotate(-8deg) skew(20deg) translateX(20px) scale(1.1);
+            transition: all 0.5s ease;
+        }
+
+        .info:hover i {
+            color: rgb(255, 255, 255);
+            transition: all 0.5s ease;
+        }
+
+        .info i {
+            color:rgb(255, 208, 0);
+            font-size: 10px;
+            transition: all 0.5s ease;
         }
 
         /* Responsive adjustments for about container */
@@ -645,6 +727,14 @@
             }
             
             .author-name {
+                font-size: 11px;
+            }
+
+            .nelsen {
+                font-size: 9px;
+            }
+
+            .footer-start {
                 font-size: 11px;
             }
         }
@@ -1225,7 +1315,11 @@
                 <div class="loading-spinner" id="loading-spinner" style="display: none;"></div>
             </button>
 
-            <span class="footer-start" style="opacity: 0.7;, color: var(--text-color);">ⓘ Ini adalah personal website<span style="opacity: 1 !important;, color: var(--success) !important;"> Nerusen </span>yang dikembangkan oleh<span style="font-family: 'codedex';, opacity: 1 !important;, color: var(--success) !important;"> Nelsen Chandra </span>#UnlimitedCreativeIdeas</span>
+            <span class="footer-start" style="color: var(--text-color);"><a class="info" style="opacity: 1 !important;">
+                        <i class="fas fa-circle-exclamation fa-fade"></i> Warning
+                    </a>Ini adalah personal website personal yang dibuat oleh<a class="nelsen" style="opacity: 1 !important;">
+                        <i class="fas fa-crown"></i>nerusen
+                    </a><span style="opacity: 0.7 !important; font-style: italic;">#UnlimitedCreativeIdeas2025 </span></span>
             
             <!-- About Me Container -->
             <div class="about-container">
