@@ -255,6 +255,7 @@
             justify-content: center;
             position: relative;
             margin-bottom: 10px;
+            width: 100%;
         }
 
         .title {
@@ -262,29 +263,36 @@
             font-size: 42px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom:-20px;
             color: #ffffff !important;
             opacity: 1 !important;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             position: relative;
             z-index: 5;
             pointer-events: none;
+            margin-top: 15px;
+            line-height: 1.2;
+            width: 100%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
         }
 
         .github-button-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(20px, 5px) rotate(-8deg);
+            top: -45px;
+            right: 20px;
+            transform: translate(50px, -20px) rotate(-8deg);
             z-index: 15;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: linear-gradient(135deg, rgba(0, 255, 21, 0.2), rgba(0, 255, 136, 0.1));
+            padding: 10px 18px;
+            background: linear-gradient(135deg, rgba(78, 78, 78, 0.3), rgba(39, 39, 39, 0.2));
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(43, 255, 0, 0.3);
-            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px 20px 8px 20px;
             color: #ffffff;
             font-family: 'codedexs', monospace;
             font-size: 12px;
@@ -292,20 +300,53 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 -4px 0 rgba(0, 0, 0, 0.35);
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4);
             white-space: nowrap;
             pointer-events: auto;
+            position: relative;
+        }
+
+        .github-button-overlay::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 10px 0 10px;
+            border-color: rgba(255, 255, 255, 0.4) transparent transparent transparent;
+        }
+
+        .github-button-overlay::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            right: 21px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 9px 9px 0 9px;
+            border-color: rgba(255, 255, 255, 0.4) transparent transparent transparent;
         }
 
         .github-button-overlay:hover {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 255, 21, 0.2));
-            transform: translate(20px, 5px) rotate(-8deg) scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
-            border-color: rgba(0, 255, 136, 0.4);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.4), rgba(0, 255, 21, 0.3));
+            transform: translate(50px, -20px) rotate(-10deg) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+            border-color: rgba(0, 255, 136, 0.5);
+        }
+
+        .github-button-overlay:hover::before {
+            border-color: rgba(0, 255, 136, 0.5) transparent transparent transparent;
+        }
+
+        .github-button-overlay:hover::after {
+            border-color: rgba(0, 255, 136, 0.4) transparent transparent transparent;
         }
 
         .github-button-overlay:active {
-            transform: translate(20px, 5px) rotate(-8deg) scale(1.02);
+            transform: translate(0, 0) rotate(-8deg) scale(1.02);
         }
 
         .github-button-overlay i {
@@ -604,6 +645,7 @@
             color: var(--text-color);
             margin-bottom: 15px;
             text-align: center;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
         }
 
         .about-description {
@@ -1345,12 +1387,12 @@
         <div class="profile-card">
             <img src="pic.gif" alt="Profile" class="profile-pic">
         <div class="title-wrapper">
-            <button class="github-button-overlay">
-                <span>I'm Nerusen</span>
-                <i class="fa-solid fa-circle-check" style="color: rgb(0, 183, 255)"></i>
-            </button>
             <h1 class="title">Hi, Welcome</h1>
         </div>
+        <button class="github-button-overlay">
+            <span>I'm Nerusen</span>
+            <i class="fa-solid fa-circle-check" style="color: rgb(0, 183, 255)"></i>
+        </button>
             <p class="subtitle">
                 <span class="typewriter">Welcome to my digital space</span>
             </p>
