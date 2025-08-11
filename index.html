@@ -259,13 +259,57 @@
 
         .title {
             font-family: 'codedex', monospace;
-            font-size: 32px;
+            font-size: 42px;
             font-weight: 700;
             text-align: center;
             margin-bottom: 10px;
             color: #ffffff !important;
             opacity: 1 !important;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .github-button-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(20px, 5px) rotate(-8deg);
+            z-index: 15;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(0, 255, 21, 0.2), rgba(0, 255, 136, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(43, 255, 0, 0.3);
+            border-radius: 20px;
+            color: #ffffff;
+            font-family: 'codedexs', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 -4px 0 rgba(0, 0, 0, 0.35);
+            white-space: nowrap;
+            pointer-events: auto;
+        }
+
+        .github-button-overlay:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 255, 21, 0.2));
+            transform: translate(20px, 5px) rotate(-8deg) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+            border-color: rgba(0, 255, 136, 0.4);
+        }
+
+        .github-button-overlay:active {
+            transform: translate(20px, 5px) rotate(-8deg) scale(1.02);
+        }
+
+        .github-button-overlay i {
+            font-size: 14px;
         }
 
         .subtitle {
@@ -647,7 +691,7 @@
             background: linear-gradient(135deg, rgba(0, 255, 21, 0.288), rgba(0, 255, 136, 0.3));
             box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.63);
             border: 1px solid rgba(43, 255, 0, 0.411);
-            transform: rotateX(10deg) rotateY(10deg) rotate(8deg) skew(-10deg) translateX(-10px) scale(1.1);
+            transform: rotate(8deg) scale(1.1);
             transition: all 0.5s ease;
         }
 
@@ -676,7 +720,7 @@
             text-decoration: none;
             font-family: 'codedexs', monospace;
             font-size: 10px;
-            transform: rotate(-8deg);
+            transform: rotate(-8deg) scale(1.1);
             transition: all 0.5s ease;
             backdrop-filter: blur(5px);
         }
@@ -685,7 +729,7 @@
             background: linear-gradient(135deg, rgba(255, 0, 0, 0.637), rgba(255, 0, 0, 0.349));
             box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.63);
             border: 1px solid rgba(255, 0, 0, 0.932);
-            transform: rotateX(-20deg) rotateY(10deg) rotate(-8deg) skew(20deg) translateX(20px) scale(1.1);
+            transform: none;
             transition: all 0.5s ease;
         }
 
@@ -695,7 +739,7 @@
         }
 
         .info i {
-            color:rgb(255, 208, 0);
+            color:rgb(255, 0, 0);
             font-size: 10px;
             transition: all 0.5s ease;
         }
@@ -1301,9 +1345,13 @@
         <!-- Profile Card -->
         <div class="profile-card">
             <img src="pic.gif" alt="Profile" class="profile-pic">
-            <div class="title-wrapper">
-                <h1 class="title">Hi, Welcome</h1>
-            </div>
+        <div class="title-wrapper">
+            <button class="github-button-overlay">
+                <span>I'm Nerusen</span>
+                <i class="fa-solid fa-circle-check" style="color: rgb(0, 183, 255)"></i>
+            </button>
+            <h1 class="title">Hi, Welcome</h1>
+        </div>
             <p class="subtitle">
                 <span class="typewriter">Welcome to my digital space</span>
             </p>
@@ -1316,7 +1364,7 @@
             </button>
 
             <span class="footer-start" style="color: var(--text-color);"><a class="info" style="opacity: 1 !important;">
-                        <i class="fas fa-circle-exclamation fa-fade"></i> Warning
+                        <i class="fas fa-circle-info fa-fade"></i> Info
                     </a>Ini adalah personal website personal yang dibuat oleh<a class="nelsen" style="opacity: 1 !important;">
                         <i class="fas fa-crown"></i>nerusen
                     </a><span style="opacity: 0.7 !important; font-style: italic;">#UnlimitedCreativeIdeas2025 </span></span>
