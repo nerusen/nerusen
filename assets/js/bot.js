@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Chat
     function initChat() {
         elements.messages.innerHTML = '';
-        addMessage("👋🏻 Welcome to <b>Nerusen AI</b>, Ini adalah bot yang dibuat oleh <b style='color:#00ff88;'>Nelsen Chandra</b>. Bot ini masih tahap pengembangan.\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#ffffff; opacity:0.7; text-decoration:none; font-size:8px;'>© Nelsen Chandra 2025</a>", 'bot');
+        addMessage("Ketik <b style='color:#ffeb3b;'>menu</b> jika ingin melihat daftar menu", 'bot');
         setTimeout(() => {
-            addMessage("Ketik <b style='color:#ffeb3b;'>menu</b> jika ingin melihat daftar menu", 'bot');
+            addMessage("👋🏻 Welcome to <b>Nerusen AI</b>, Ini adalah bot yang dibuat oleh <b style='color:#00ff88;'>Nelsen Chandra</b>. Bot ini masih tahap pengembangan.\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#ffffff; opacity:0.7; text-decoration:none; font-size:10px;'>© Nelsen Chandra 2025</a>", 'bot');
         }, 800);
     }
 
