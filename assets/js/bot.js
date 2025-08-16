@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { id: "promo", text: "Promo", keywords: ["promo", "diskon", "voucher", "potongan", "promosi", "deal", "bonus", "giveaway", "hadiah"] },
             ]
         },
-        "default": "❌ <b>Maaf saya tidak mengerti</b>\n\nKetik <b>menu</b> untuk melihat opsi yang tersedia\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#00ff88;'>© Nelsen Chandra 2025</a>"
+        "default": "❌ <b>Maaf saya tidak mengerti</b>\n\nKetik <b>menu</b> untuk melihat opsi yang tersedia\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#00ff88; text-decoration: none;'>© Nelsen Chandra 2025</a>"
     };
 
     // Initialize Chat
