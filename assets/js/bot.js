@@ -88,13 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 { id: "promo", text: "Promo", keywords: ["promo", "diskon", "voucher", "potongan", "promosi", "deal", "bonus", "giveaway", "hadiah"] },
             ]
         },
-        "default": "❌ <b>Maaf saya tidak mengerti</b>\n\nKetik <b>menu</b> untuk melihat opsi yang tersedia\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#00ff88; text-decoration: none;'>© Nelsen Chandra 2025</a>"
+        "default": "❌ <b>Maaf saya tidak mengerti</b>\n\nKetik <b style='color:#ffeb3b;'> menu</b> untuk melihat opsi yang tersedia\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#00ff88; text-decoration:none;'>© Nelsen Chandra 2025</a>"
     };
 
     // Initialize Chat
     function initChat() {
         elements.messages.innerHTML = '';
-        addMessage("👋🏻 Welcome to <b>Nerusen AI</b>, Ini adalah bot yang dibuat oleh <b>Nelsen Chandra</b>. Bot ini masih tahap pengembangan.\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#00ff88;'>© Nelsen Chandra 2025</a>", 'bot');
+        addMessage("👋🏻 Welcome to <b>Nerusen AI</b>, Ini adalah bot yang dibuat oleh <b style='color:#ffeb3b;'>Nelsen Chandra</b>. Bot ini masih tahap pengembangan.\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#00ff88; text-decoration:none;'>© Nelsen Chandra 2025</a>", 'bot');
         setTimeout(() => {
             addMessage("Ketik <b>menu</b> jika ingin melihat daftar menu", 'bot');
         }, 800);
