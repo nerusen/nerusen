@@ -79,7 +79,7 @@
             padding-top: 10vh;
             background: 
                 linear-gradient(rgba(0, 0, 0, 0.411), rgba(33, 33, 56, 0.3)),
-                url('back38.gif') no-repeat center center fixed;
+                url('bg.jpg') no-repeat center center fixed;
             background-size: cover;
             background-attachment: scroll;
             position: relative;
@@ -96,7 +96,7 @@
             content: "";
             background: 
                 linear-gradient(rgba(0, 0, 0, 0.4), rgba(33, 33, 56, 0.3)),
-                url('back38.gif') no-repeat center center;
+                url('bg.jpg') no-repeat center center;
             background-size: cover;
             z-index: -1;
         }
@@ -235,6 +235,7 @@
         .profile-pic {
             width: 200px;
             height: 100px;
+            filter: saturate(0%);
             margin-top: 20px;
             object-fit: cover;
             margin-bottom: 20px;
@@ -245,6 +246,7 @@
         
         .profile-pic:hover {
             transform: scale(1.1);
+            filter: none;
             -webkit-transform: scale(1.1);
         }
 
@@ -495,9 +497,9 @@
         .start-button {
             margin-top: 10px;
             font-family: 'codedexs', monospace;
-            background: linear-gradient(135deg, rgba(0, 255, 21, 0.3), rgba(0, 255, 136, 0.2));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
             backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(43, 255, 0, 0.4);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
             border-radius: 25px;
             padding: 12px 25px;
             color: var(--text-color);
@@ -514,7 +516,7 @@
             height: 45px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 0 rgba(0, 255, 136, 0.822);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.822);
         }
 
         .start-button::before {
@@ -533,15 +535,15 @@
         }
 
         .start-button:hover:not(.loading) {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.4), rgba(0, 255, 21, 0.3));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.3));
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(9, 255, 0, 0.3), 0 0 20px rgba(0, 255, 136, 0.2);
-            border-color: rgba(0, 255, 136, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.6);
         }
 
         .start-button:active:not(.loading) {
             transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
         }
 
         .start-button.loading {
@@ -554,7 +556,7 @@
         .start-button .fa-bolt {
             font-size: 16px;
             transition: all 0.4s ease;
-            filter: drop-shadow(0 0 3px rgba(0, 255, 136, 0.5));
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
         }
 
         .start-button:hover:not(.loading) .fa-bolt {
@@ -644,7 +646,7 @@
             color: var(--text-color);
             margin-bottom: 15px;
             text-align: center;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+            text-shadow: 0 0 10px rgb(255, 255, 255);
         }
 
         .about-description {
@@ -668,8 +670,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, rgba(0, 255, 21, 0.2), rgba(0, 255, 136, 0.1));
-            border: 1px solid rgba(43, 255, 0, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.384), rgba(255, 255, 255, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
             padding: 8px 16px;
             color: var(--text-color);
@@ -681,9 +683,9 @@
         }
 
         .github-button:hover {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 255, 21, 0.2));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.541));
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
         }
 
         .github-button i {
@@ -768,7 +770,7 @@
             background: linear-gradient(135deg, rgba(255, 0, 0, 0.637), rgba(255, 0, 0, 0.349));
             box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.63);
             border: 1px solid rgba(255, 0, 0, 0.932);
-            transform: rotate(-8deg) scale(1.1);
+            transform: scale(1.1);
             transition: all 0.5s ease;
         }
 
@@ -982,7 +984,7 @@
         .stat-number {
             font-size: 14px;
             font-weight: bold;
-            color: #39d353;
+            color: #00ff2a;
         }
 
         .month-label {
