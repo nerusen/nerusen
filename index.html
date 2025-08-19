@@ -547,7 +547,7 @@
         .start-button.loading {
             cursor: not-allowed;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.521);
             animation: pulse-glow 2s ease-in-out infinite;
         }
 
@@ -570,48 +570,48 @@
         .loading-spinner {
             width: 24px;
             height: 24px;
-            border: 2px solid rgba(0, 255, 136, 0.2);
-            border-top: 2px solid rgba(0, 255, 136, 0.8);
-            border-right: 2px solid rgba(0, 255, 136, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-top: 2px solid rgba(255, 255, 255, 0.8);
+            border-right: 2px solid rgba(255, 255, 255, 0.6);
             border-radius: 50%;
             animation: neon-spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         @keyframes neon-spin {
             0% { 
                 transform: translate(-50%, -50%) rotate(0deg);
-                box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
             50% {
-                box-shadow: 0 0 20px rgba(0, 255, 136, 0.8), 0 0 30px rgba(0, 255, 136, 0.4);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4);
             }
             100% { 
                 transform: translate(-50%, -50%) rotate(360deg);
-                box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
         }
 
         @keyframes pulse-glow {
             0%, 100% {
-                box-shadow: 0 0 5px rgba(0, 255, 136, 0.2);
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
             }
             50% {
-                box-shadow: 0 0 15px rgba(0, 255, 136, 0.4), 0 0 25px rgba(0, 255, 136, 0.2);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2);
             }
         }
 
         @keyframes bolt-flash {
             0%, 100% {
-                filter: drop-shadow(0 0 3px rgba(0, 255, 136, 0.5));
+                filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
                 transform: scale(1);
             }
             50% {
-                filter: drop-shadow(0 0 8px rgba(0, 255, 136, 1));
+                filter: drop-shadow(0 0 8px rgb(255, 255, 255));
                 transform: scale(1.2);
             }
         }
@@ -711,8 +711,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, rgba(0, 255, 21, 0.288), rgba(0, 255, 136, 0.3));
-            border: 1px solid rgba(43, 255, 0, 0.411);
+            background: linear-gradient(135deg, rgba(184, 184, 184, 0.288), rgba(92, 92, 92, 0.3));
+            border: 1px solid rgba(255, 255, 255, 0.411);
             border-radius: 30px;
             padding: 2px 10px;
             margin-right: 7px;
@@ -728,9 +728,9 @@
         }
 
         .nelsen:hover {
-            background: linear-gradient(135deg, rgba(0, 255, 21, 0.288), rgba(0, 255, 136, 0.3));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(43, 43, 43, 0.7));
             box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.63);
-            border: 1px solid rgba(43, 255, 0, 0.411);
+            border: 1px solid rgba(255, 255, 255, 0.411);
             transform: rotate(8deg) scale(1.1);
             transition: all 0.5s ease;
         }
@@ -844,7 +844,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 25px;
-            margin-bottom: 5px;
+            margin-bottom: 50px;
             width: 100%;
             max-width: 400px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
