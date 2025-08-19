@@ -94,10 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Chat
     function initChat() {
         elements.messages.innerHTML = '';
-        addMessage("Ketik <b style='color:#ffeb3b;'>menu</b> jika ingin melihat daftar menu", 'bot');
-        setTimeout(() => {
-            addMessage("👋🏻 Welcome to <b>Nerusen AI</b>, Ini adalah bot yang dibuat oleh <b style='color:#00ff88;'>Nelsen Chandra</b>. Bot ini masih tahap pengembangan.\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#ffffff; opacity:0.7; text-decoration:none; font-size:10px;'>© Nelsen Chandra 2025</a>", 'bot');
-        }, 1000);
+        addMessage("👋🏻 Welcome to <b>Nerusen AI</b>, Ini adalah bot yang dibuat oleh <b style='color:#00ff88;'>Nelsen Chandra</b>. Bot ini masih tahap pengembangan.\n\nKetik <b style='color:#ffeb3b;'> menu</b> untuk melihat opsi yang tersedia\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#ffffff; opacity:0.7; text-decoration:none; font-size:10px;'>© Nelsen Chandra 2025</a>", 'bot');
     }
 
     // Add Message Function
@@ -122,11 +119,24 @@ document.addEventListener('DOMContentLoaded', function() {
         switch(type) {
             case "image":
                 const imgClass = meta.class || 'bot-image';
-                message.innerHTML = `
-                    <div class="ai-message-content">
-                        <img src="${content}" class="${imgClass}">
-                        <div class="image-caption">${meta.caption || ''}</div>
-                    </div>`;
+                if (imgClass === 'qris-image') {
+                    message.innerHTML = `
+                        <div class="ai-message-content">
+                            <div class="qris-container">
+                                <img src="${content}" class="${imgClass}">
+                                <button class="view-qris-btn" onclick="window.open('/qris.jpg', '_blank')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                            <div class="image-caption">${meta.caption || ''}</div>
+                        </div>`;
+                } else {
+                    message.innerHTML = `
+                        <div class="ai-message-content">
+                            <img src="${content}" class="${imgClass}">
+                            <div class="image-caption">${meta.caption || ''}</div>
+                        </div>`;
+                }
                 break;
                 
             case "menu":
