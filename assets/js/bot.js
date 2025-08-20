@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { id: "pembayaran", text: "Payment", keywords: ["pembayaran", "payment", "bayar", "transfer", "gopay", "dana", "paypal"] },
                 { id: "waktu", text: "Waktu", keywords: ["waktu", "jadwal", "operasional", "open", "jam", "durasi"] },
                 { id: "promo", text: "Promo", keywords: ["promo", "diskon", "voucher", "potongan", "promosi", "deal", "bonus", "giveaway", "hadiah"] },
-                { id: "toxic", text: "kontol", keywords: ["cok", "kontol", "memek", "puki", "asu", "anjing"] },
+                // Item "toxic" dihapus dari menu tapi tetap dipertahankan dalam database RESPONSES
             ]
         },
         "default": "❌ <b>Maaf saya tidak mengerti</b>\n\nKetik <b style='color:#ffeb3b;'> menu</b> untuk melihat opsi yang tersedia\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#00ff88; text-decoration:none;'>© Nelsen Chandra 2025</a>"
@@ -235,6 +235,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (lowerPrompt === 'menu') return RESPONSES.menu;
         if (RESPONSES[lowerPrompt]) return RESPONSES[lowerPrompt];
+        
+        // Tetap memeriksa kata-kata toxic meskipun tidak ada di menu
+        const toxicKeywords = ["cok", "kontol", "memek", "puki", "asu", "anjing"];
+        if (toxicKeywords.some(kw => lowerPrompt.includes(kw))) {
+            return RESPONSES.toxic;
+        }
         
         for (const item of RESPONSES.menu.items) {
             if (item.keywords.some(kw => lowerPrompt.includes(kw))) {
