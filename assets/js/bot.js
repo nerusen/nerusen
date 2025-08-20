@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Enhanced Responses Database
     const RESPONSES = {
+        "toxic": "Ga boleh kasar ya!", keywords: ["cok", "kontol", "memek", "puki", "asu", "anjing"],
         "software": "🧩 <b>Software Design Kami:</b>\n\n• Adobe Photoshop\n• Figma\n• CorelDRAW\n• Alight Motion\n• IbisPaintX\n• Canva",
         "harga": "💰 <b>Daftar Harga:</b>\n\n• Logo Design: Rp 50.000-100.000\n• Poster: Rp 30.000-50.000\n• Banner: Rp 40.000-60.000\n• Social Media: Rp 30.000\n• Website Basic: Rp 100.000\n• Website Premium: Rp 150.000+\n\n*Harga bisa nego untuk project besar",
         "portofolio": "🎨 <b>Portfolio Kami:</b>\n\n• Behance: <a href='https://behance.net/xynelsdesign' target='_blank' style='color:#00ff88; text-decoration:none;'>nerusen graph</a>\n• Pinterest: <a href='https://pin.it/1qGkr8DKj' target='_blank' style='color:#00ff88; text-decoration:none;'>Nerusen</a>\n• Instagram: <a href='https://instagram.com/n31sen.st' target='_blank' style='color:#00ff88; text-decoration:none;'>n31sen.st</a>\n\nklik username berwarna <b style='color:#00ff88;'>hijau</b> untuk mengunjungi portofolio.",
