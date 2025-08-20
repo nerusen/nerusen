@@ -46,7 +46,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Enhanced Responses Database
     const RESPONSES = {
-        "toxic": "Ga boleh kasar ya!",
+        "toxic": [
+            "Ga boleh kasar ya! Mari kita jaga percakapan tetap sopan.",
+            "No toxic allowed",
+            "Jangan kasar😡",
+            "please, don't be toxic",
+            "Sehat sehat🤍",
+            "Semoga masuk neraka",
+            "Dan janganlah kamu memalingkan wajah dari manusia (karena sombong) dan janganlah berjalan di bumi dengan angkuh. Sungguh, Allah tidak menyukai orang yang sombong dan membanggakan diri. (QS. Luqman: 18)",
+            "Konsekuensi Berkata Kasar:\n\n<b style='color:#00ff88;'>• Dimurkai Allah SWT:</b> Berkata kasar dan kotor adalah perbuatan yang dibenci Allah SWT.\n\n<b style='color:#00ff88;'>• Merusak Hubungan:</b> Perkataan kasar dapat merusak hubungan baik antar sesama manusia dan menimbulkan kebencian. \n\n<b style='color:#00ff88;'>• Merusak Diri Sendiri:</b> Perkataan kasar dapat mencerminkan akhlak yang buruk dan menjauhkan diri dari rahmat Allah SWT."
+            "Wah, kata-katanya tidak pantas nih. Yuk, kita bicara dengan baik-baik.",
+            "Mohon hindari penggunaan kata-kata kasar. Kami di sini untuk membantu dengan profesional."
+        ],
         "software": "🧩 <b>Software Design Kami:</b>\n\n• Adobe Photoshop\n• Figma\n• CorelDRAW\n• Alight Motion\n• IbisPaintX\n• Canva",
         "harga": "💰 <b>Daftar Harga:</b>\n\n• Logo Design: Rp 50.000-100.000\n• Poster: Rp 30.000-50.000\n• Banner: Rp 40.000-60.000\n• Social Media: Rp 30.000\n• Website Basic: Rp 100.000\n• Website Premium: Rp 150.000+\n\n*Harga bisa nego untuk project besar",
         "portofolio": "🎨 <b>Portfolio Kami:</b>\n\n• Behance: <a href='https://behance.net/xynelsdesign' target='_blank' style='color:#00ff88; text-decoration:none;'>nerusen graph</a>\n• Pinterest: <a href='https://pin.it/1qGkr8DKj' target='_blank' style='color:#00ff88; text-decoration:none;'>Nerusen</a>\n• Instagram: <a href='https://instagram.com/n31sen.st' target='_blank' style='color:#00ff88; text-decoration:none;'>n31sen.st</a>\n\nklik username berwarna <b style='color:#00ff88;'>hijau</b> untuk mengunjungi portofolio.",
@@ -93,6 +104,38 @@ document.addEventListener('DOMContentLoaded', function() {
         "default": "❌ <b>Maaf saya tidak mengerti</b>\n\nKetik <b style='color:#ffeb3b;'> menu</b> untuk melihat opsi yang tersedia\n\n<a href='https://github.com/nerusen' target='_blank' style='color:#00ff88; text-decoration:none;'>© Nelsen Chandra 2025</a>"
     };
 
+    // Daftar kata-kata toxic yang lebih lengkap
+    const TOXIC_KEYWORDS = [
+    "cok", "kontol", "memek", "puki", "asu", "anjing", "bangsat", "goblok", "tolol", 
+    "bodoh", "setan", "jancok", "jancuk", "bajingan", "kampret", "kirik", "tai", 
+    "bego", "idiot", "gblk", "ngentot", "pepek", "pantek", "babi", "bangsad", "nigga",
+    "fuck", "shit", "asshole", "bitch", "dick", "pussy", "motherfucker", "cunt",
+    "dumb", "stupid", "retard", "bastard", "son of a bitch", "damn", "hell", "crap",
+    "wtf", "wth", "dammit", "bullshit", "shitty", "ass", "douchebag", "scumbag",
+    "douche", "prick", "dickhead", "piss", "piss off", "bloody hell", "bugger",
+    "screw you", "screw u", "f off", "f u", "fuck you", "fuck u", "shithead",
+    "arse", "arsehole", "bollocks", "cock", "wanker", "twat", "minge", "knob",
+    "bellend", "git", "munafik", "hypocrite", "penipu", "curang", "jahat",
+    "sialan", "celaka", "brengsek", "bedebah", "bencong", "banci", "homo",
+    "lesbi", "sundal", "lonte", "pelacur", "lacur", "haram", "dajjal", "iblis",
+    "syaitan", "setan", "jin", "kafir", "murtad", "kristen", "yahudi", "nasrani",
+    "komunis", "atheis", "zina", "pelaku zina", "pezinah", "zolim", "zalim",
+    "thagut", "musyrik", "munafik", "fasik", "durhaka", "maling", "pencuri",
+    "koruptor", "korupsi", "gila", "sinting", "edan", "stress", "gila", "goblok",
+    "tolol", "idiot", "moron", "imbecile", "cretin", "simpleton", "dunce",
+    "numbskull", "blockhead", "bonehead", "knucklehead", "nitwit", "dimwit",
+    "halfwit", "dipshit", "dumbass", "jackass", "smartass", "wiseass", "badass",
+    "hardass", "kickass", "kissass", "dickass", "buttass", "assclown", "asshat",
+    "asswipe", "shitass", "fuckass", "dickweed", "dickwad", "pissworm", "scum",
+    "vermin", "parasite", "leech", "freak", "weirdo", "pervert", "deviant",
+    "degenerate", "perv", "sicko", "psycho", "sociopath", "psychopath", "lunatic",
+    "maniac", "madman", "nutcase", "crackpot", "loony", "fruitcake", "wacko",
+    "keparat", "bajing", "bajul", "bangkai", "basi", "bejat", "belagu", "benalu",
+    "bengap", "bengis", "biadab", "bius", "brengsek", "bual", "bujang", "buntung",
+    "buruk", "busuk", "buta", "cacat", "cacing", "cangkang", "capuk", "catut",
+    "cebong", "cekcok", "celaka", "celeng", "celomet", "cetek", "cicak", "cicip",
+    "cina", "congor", "copet", "cukur", "cupu", "curang", "curut", "dableg",
+    ];
     // Initialize Chat
     function initChat() {
         elements.messages.innerHTML = '';
@@ -109,6 +152,184 @@ document.addEventListener('DOMContentLoaded', function() {
                 scrollToBottom();
             }, calculateTypingDelay(content));
         } else {
+            createMessageElement(content, sender, type, meta);
+            scrollToBottom();
+        }
+    }
+
+    function createMessageElement(content, sender, type, meta) {
+        const message = document.createElement('div');
+        message.className = `ai-message ai-message-${sender}`;
+        
+        switch(type) {
+            case "image":
+                const imgClass = meta.class || 'bot-image';
+                if (imgClass === 'qris-image') {
+                    message.innerHTML = `
+                        <div class="ai-message-content">
+                            <div class="qris-container">
+                                <img src="${content}" class="${imgClass}">
+                                <button class="view-qris-btn" onclick="window.open('/qris.jpg', '_blank')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                            <div class="image-caption">${meta.caption || ''}</div>
+                        </div>`;
+                } else {
+                    message.innerHTML = `
+                        <div class="ai-message-content">
+                            <img src="${content}" class="${imgClass}">
+                            <div class="image-caption">${meta.caption || ''}</div>
+                        </div>`;
+                }
+                break;
+                
+            case "menu":
+                const menuItems = RESPONSES.menu.items.map(item => 
+                    `<div class="ai-menu-item" data-id="${item.id}">
+                        <div class="menu-text">${item.text}</div>
+                    </div>`
+                ).join('');
+                
+                message.innerHTML = `
+                    <div class="ai-menu-container">
+                        <div class="ai-menu-title">
+                            <i class="fas fa-list"></i> Menu yang tersedia
+                        </div>
+                        <div class="ai-menu-grid">
+                            ${menuItems}
+                        </div>
+                    </div>`;
+                
+                setTimeout(() => {
+                    document.querySelectorAll('.ai-menu-item').forEach(item => {
+                        item.addEventListener('click', () => {
+                            const id = item.getAttribute('data-id');
+                            handleMenuSelection(id);
+                        });
+                    });
+                }, 50);
+                break;
+                
+            case "contact":
+                message.innerHTML = `
+                    <div class="ai-contact-card">
+                        <img src="${meta.profile}" class="ai-contact-profile">
+                        <div class="ai-contact-name">${meta.name}</div>
+                        <div class="ai-contact-bio">${meta.bio}</div>
+                        <div class="ai-contact-phone">${meta.phone}</div>
+                        <div class="ai-contact-buttons">
+                            <button class="ai-contact-btn ai-contact-chat">
+                                <i class="fab fa-whatsapp"></i> Chat
+                            </button>
+                            <button class="ai-contact-btn ai-contact-copy">
+                                <i class="fas fa-copy"></i> Salin
+                            </button>
+                        </div>
+                    </div>`;
+                break;
+                
+            default:
+                message.innerHTML = `
+                    <div class="ai-message-content">
+                        ${content.replace(/\n/g, '<br>')}
+                    </div>`;
+        }
+        
+        elements.messages.appendChild(message);
+    }
+
+    function handleMenuSelection(id) {
+        const response = RESPONSES[id];
+        if (!response) return;
+        
+        showTypingIndicator();
+        setTimeout(() => {
+            hideTypingIndicator();
+            if (typeof response === 'object') {
+                addMessage(response.url || response.items || response.profile, 'bot', response.type, response);
+            } else {
+                addMessage(response, 'bot');
+            }
+        }, 800);
+    }
+
+    function showTypingIndicator() {
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'typing-indicator';
+        typingIndicator.id = 'typingIndicator';
+        typingIndicator.innerHTML = `<span></span><span></span><span></span>`;
+        elements.messages.appendChild(typingIndicator);
+        scrollToBottom();
+    }
+
+    function hideTypingIndicator() {
+        const typingIndicator = document.getElementById('typingIndicator');
+        if (typingIndicator) typingIndicator.remove();
+    }
+
+    function calculateTypingDelay(content) {
+        const wordCount = content.split(/\s+/).length;
+        return Math.min(Math.max(wordCount * 200, 800), 3000);
+    }
+
+    function getBotResponse(prompt) {
+        const lowerPrompt = prompt.toLowerCase().trim();
+        
+        if (lowerPrompt === 'menu') return RESPONSES.menu;
+        if (RESPONSES[lowerPrompt]) return RESPONSES[lowerPrompt];
+        
+        // Memeriksa kata-kata toxic
+        if (TOXIC_KEYWORDS.some(kw => lowerPrompt.includes(kw))) {
+            // Memilih respons toxic secara acak
+            const randomIndex = Math.floor(Math.random() * RESPONSES.toxic.length);
+            return RESPONSES.toxic[randomIndex];
+        }
+        
+        for (const item of RESPONSES.menu.items) {
+            if (item.keywords.some(kw => lowerPrompt.includes(kw))) {
+                return RESPONSES[item.id];
+            }
+        }
+        
+        return RESPONSES.default;
+    }
+
+    function sendMessage() {
+        const message = elements.input.value.trim();
+        if (!message) return;
+        
+        addMessage(message, 'user');
+        elements.input.value = '';
+        
+        setTimeout(() => {
+            const response = getBotResponse(message);
+            if (response?.type === "menu") {
+                createMenu();
+            } else if (typeof response === 'object') {
+                addMessage(response.url || response.items || response.profile, 'bot', response.type, response);
+            } else {
+                addMessage(response, 'bot');
+            }
+        }, 500);
+    }
+
+    function createMenu() {
+        hideTypingIndicator();
+        addMessage("", 'bot', "menu");
+    }
+
+    function scrollToBottom() {
+        elements.messages.scrollTop = elements.messages.scrollHeight;
+    }
+
+    function toggleChat() {
+        elements.container.classList.toggle('active');
+        if (elements.container.classList.contains('active') && elements.messages.children.length <= 2) {
+            initChat();
+        }
+    }
+});        } else {
             createMessageElement(content, sender, type, meta);
             scrollToBottom();
         }
