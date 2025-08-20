@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhanced Responses Database
     const RESPONSES = {
         "toxic": [
-            "Dan janganlah kamu memalingkan wajah dari manusia (karena sombong) dan janganlah berjalan di bumi dengan angkuh. Sungguh, Allah tidak menyukai orang yang sombong dan membanggakan diri.(QS. Luqman: 18)",
+            "Dan janganlah kamu memalingkan wajah dari manusia (karena sombong) dan janganlah berjalan di bumi dengan angkuh. Sungguh, Allah tidak menyukai orang yang sombong dan membanggakan diri.\n\n<a style='color:#222222;'>(QS. Luqman: 18)</a>",
             "<a href='https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.detik.com/hikmah/doa-dan-hadits/d-7855713/rasulullah-saw-larang-muslim-berkata-kasar-ini-haditsnya%23:~:text%3DBerkata%2520kasar%2520atau%2520kotor%2520adalah,kata%252Dkata%2520yang%2520tak%2520pantas.%26text%3DAbu%2520Usamah%2520Salim%2520melalui%2520Syarah,berkata%2520kasar%2520adalah%2520perbuatan%2520tercela.&ved=2ahUKEwixo-3UopiPAxXpTmwGHVhTElAQFnoECCAQBQ&usg=AOvVaw1IOf9jY64EeUQyfto3CmAI' target='_blank' style='color:#00ff88; text-decoration:none;'>Konsekuensi Berkata Kasar:</a>\n\nDimurkai Allah SWT: Berkata kasar dan kotor adalah perbuatan yang dibenci Allah SWT.\n\nMerusak Hubungan: Perkataan kasar dapat merusak hubungan baik antar sesama manusia dan menimbulkan kebencian. \n\nMerusak Diri Sendiri: Perkataan kasar dapat mencerminkan akhlak yang buruk dan menjauhkan diri dari rahmat Allah SWT.",
             "Berkata kasar atau kotor adalah perbuatan tercela. Islam melarang umatnya untuk melontarkan kata-kata yang tak pantas.",
             "Ga boleh kasar ya! Mari kita jaga percakapan tetap sopan.",
