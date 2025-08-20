@@ -47,13 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhanced Responses Database
     const RESPONSES = {
         "toxic": [
-            "Dan janganlah kamu memalingkan wajah dari manusia (karena sombong) dan janganlah berjalan di bumi dengan angkuh. Sungguh, Allah tidak menyukai orang yang sombong dan membanggakan diri.\n\n<a style='color:#222222;'>(QS. Luqman: 18)</a>",
+            "Dan janganlah kamu memalingkan wajah dari manusia (karena sombong) dan janganlah berjalan di bumi dengan angkuh. Sungguh, Allah tidak menyukai orang yang sombong dan membanggakan diri.\n\n<a style='color:#fffffff; opacity:0.7;'>(QS. Luqman: 18)</a>",
             "<a href='https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.detik.com/hikmah/doa-dan-hadits/d-7855713/rasulullah-saw-larang-muslim-berkata-kasar-ini-haditsnya%23:~:text%3DBerkata%2520kasar%2520atau%2520kotor%2520adalah,kata%252Dkata%2520yang%2520tak%2520pantas.%26text%3DAbu%2520Usamah%2520Salim%2520melalui%2520Syarah,berkata%2520kasar%2520adalah%2520perbuatan%2520tercela.&ved=2ahUKEwixo-3UopiPAxXpTmwGHVhTElAQFnoECCAQBQ&usg=AOvVaw1IOf9jY64EeUQyfto3CmAI' target='_blank' style='color:#00ff88; text-decoration:none;'>Konsekuensi Berkata Kasar:</a>\n\nDimurkai Allah SWT: Berkata kasar dan kotor adalah perbuatan yang dibenci Allah SWT.\n\nMerusak Hubungan: Perkataan kasar dapat merusak hubungan baik antar sesama manusia dan menimbulkan kebencian. \n\nMerusak Diri Sendiri: Perkataan kasar dapat mencerminkan akhlak yang buruk dan menjauhkan diri dari rahmat Allah SWT.",
             "Berkata kasar atau kotor adalah perbuatan tercela. Islam melarang umatnya untuk melontarkan kata-kata yang tak pantas.",
             "Ga boleh kasar ya! Mari kita jaga percakapan tetap sopan.",
             "Wah, kata-katanya tidak pantas nih. Yuk, kita bicara dengan baik-baik.",
             "Mohon hindari penggunaan kata-kata kasar. Kami di sini untuk membantu dengan profesional."
         ],
+        "bot": "👋🏻 Hi, Welcome to <b>Nerusen AI</b>, ada yang bisa saya bantu?",
         "software": "🧩 <b>Software Design Kami:</b>\n\n• Adobe Photoshop\n• Figma\n• CorelDRAW\n• Alight Motion\n• IbisPaintX\n• Canva",
         "harga": "💰 <b>Daftar Harga:</b>\n\n• Logo Design: Rp 50.000-100.000\n• Poster: Rp 30.000-50.000\n• Banner: Rp 40.000-60.000\n• Social Media: Rp 30.000\n• Website Basic: Rp 100.000\n• Website Premium: Rp 150.000+\n\n*Harga bisa nego untuk project besar",
         "portofolio": "🎨 <b>Portfolio Kami:</b>\n\n• Behance: <a href='https://behance.net/xynelsdesign' target='_blank' style='color:#00ff88; text-decoration:none;'>nerusen graph</a>\n• Pinterest: <a href='https://pin.it/1qGkr8DKj' target='_blank' style='color:#00ff88; text-decoration:none;'>Nerusen</a>\n• Instagram: <a href='https://instagram.com/n31sen.st' target='_blank' style='color:#00ff88; text-decoration:none;'>n31sen.st</a>\n\nklik username berwarna <b style='color:#00ff88;'>hijau</b> untuk mengunjungi portofolio.",
@@ -106,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "bodoh", "setan", "jancok", "jancuk", "bajingan", "kampret", "kirik", "tai", 
         "bego", "idiot", "gblk", "ngentot", "pepek", "pantek", "babi", "bangsad",
         "fuck", "shit", "asshole", "bitch", "dick", "pussy", "motherfucker", "cunt",
-        "dumb", "stupid", "retard", "bastard", "son of a bitch", "damn", "hell"
+        "dumb", "stupid", "retard", "bastard", "son of a bitch", "damn", "hell", "bacot", "pukimay", "kntol", "mamak", "anj", "ajg", "tll"
     ];
 
     // Initialize Chat
